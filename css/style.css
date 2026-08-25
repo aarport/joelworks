@@ -695,57 +695,79 @@ p { margin: 0 0 1em; }
 .steps p { margin-bottom: 0; color: var(--muted); }
 
 /* ---------- Gallery banner follow block ---------- */
-/* Fills the space the measured text column leaves on the right, and turns
-   the profiles into a real call to action rather than two small icons. */
 .gallery-head { display: grid; gap: 26px; }
 
 .gallery-head__copy { min-width: 0; }
 
-.follow__title {
-  margin: 0 0 14px;
-  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  max-width: 14ch;
+.follow {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
 }
 
-.follow__links { display: flex; flex-wrap: wrap; gap: 10px; }
+.follow__title {
+  margin: 0 0 4px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+
+.follow__note {
+  margin: 0 0 16px;
+  font-size: .86rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.follow__links { display: grid; gap: 9px; }
 
 .follow__btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 12px 18px;
-  border: 1px solid var(--line);
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border: 0;
   border-radius: 999px;
-  background: #fff;
-  color: var(--brand);
-  font-size: .92rem;
+  color: #fff;
+  font-size: .93rem;
   font-weight: 700;
+  letter-spacing: .01em;
   text-decoration: none;
-  transition: background .2s ease, border-color .2s ease, color .2s ease;
+  transition: filter .2s ease, transform .2s ease;
 }
 
-.follow__btn svg { width: 20px; height: 20px; flex: none; }
+.follow__btn svg { width: 19px; height: 19px; flex: none; }
+
+/* Brand colours, adjusted for legibility. Instagram's official gradient runs
+   through orange and yellow, where white text drops to 2.3:1, so this uses
+   the pink to blue part of it. Facebook's own #1877F2 only reaches 4.2:1, so
+   it is deepened a shade. Every stop here clears 4.5:1 against white. */
+.follow__btn--ig {
+  background: linear-gradient(135deg, #d62976 0%, #962fbf 55%, #4f5bd5 100%);
+}
+
+.follow__btn--fb { background: #1466d8; }
 
 .follow__btn:hover,
 .follow__btn:focus-visible {
-  background: var(--brand);
-  border-color: var(--brand);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
   color: #fff;
+}
+
+@media (min-width: 560px) and (max-width: 899px) {
+  .follow__links { grid-template-columns: 1fr 1fr; }
 }
 
 @media (min-width: 900px) {
   .gallery-head {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) 268px;
     align-items: start;
-    gap: 48px;
+    gap: 44px;
   }
-
-  .follow { text-align: right; justify-self: end; }
-  .follow__title { max-width: 12ch; margin-left: auto; }
-  .follow__links { justify-content: flex-end; }
 }
 
 /* ---------- Gallery mosaic ---------- */
