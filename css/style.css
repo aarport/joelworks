@@ -646,7 +646,9 @@ p { margin: 0 0 1em; }
 
 /* ---------- CTA band ---------- */
 .cta {
-  background: var(--brand);
+  /* same tone as the footer so the foot of the page reads as one block,
+     with the orange button carrying the emphasis instead of the panel */
+  background: var(--brand-dark);
   color: #fff;
   text-align: center;
 }
