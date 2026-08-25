@@ -2,9 +2,10 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  --brand: #1b3a5c;
-  --brand-dark: #12293f;
-  --brand-tint: #eaf0f6;
+  /* sampled from the navy cabinetry in the hero photo (hue 217) */
+  --brand: #2b4369;
+  --brand-dark: #17273f;
+  --brand-tint: #e9eef6;
   --accent: #b8501c;
   --accent-dark: #94400f;
   --ink: #231f20;          /* matches the logo charcoal */
