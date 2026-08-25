@@ -424,6 +424,51 @@ p { margin: 0 0 1em; }
 /* anchors from the trade bar should not land under anything */
 .card[id], .service[id] { scroll-margin-top: 20px; }
 
+/* ---------- Page entrance ---------- */
+/* Everything sits inside prefers-reduced-motion: no-preference, including the
+   hidden start state. If someone asks for reduced motion, or a browser never
+   runs the animation, nothing is ever left invisible. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes page-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes page-rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .site-header {
+    animation: page-fade .5s ease both;
+  }
+
+  /* the first section of any page rises in as one block */
+  main > section:first-of-type {
+    animation: page-rise .75s cubic-bezier(.2, .7, .2, 1) .06s both;
+  }
+
+  /* on the home page the hero pieces come in one after another */
+  .hero__inner > * {
+    animation: page-rise .7s cubic-bezier(.2, .7, .2, 1) both;
+  }
+
+  .hero__inner > *:nth-child(1) { animation-delay: .10s; }
+  .hero__inner > *:nth-child(2) { animation-delay: .18s; }
+  .hero__inner > *:nth-child(3) { animation-delay: .26s; }
+  .hero__inner > *:nth-child(4) { animation-delay: .34s; }
+  .hero__inner > *:nth-child(5) { animation-delay: .42s; }
+
+  .trades {
+    animation: page-fade .8s ease .5s both;
+  }
+
+  /* the hero photograph itself fades up behind all of it */
+  .hero__media {
+    animation: page-fade 1.1s ease both;
+  }
+}
+
 /* ---------- Trust strip ---------- */
 .trust {
   background: var(--paper-2);
