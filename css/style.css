@@ -648,91 +648,184 @@ p { margin: 0 0 1em; }
 .steps h3 { margin-bottom: .25em; }
 .steps p { margin-bottom: 0; color: var(--muted); }
 
-/* ---------- Gallery ---------- */
-/* Photographs sit on the page rather than inside cards. Borders, white card
-   backgrounds and heavy rounding all read as "web content"; portfolios show
-   the work with nothing around it. */
+/* ---------- Gallery mosaic ---------- */
+/* A wall of work rather than stacked articles. Heading-paragraph-images
+   repeated down a page reads as a blog; a dense grid reads as a portfolio. */
 .gallery-wrap {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 0 26px;
+  padding: 0 18px;
 }
 
-/* Photographs take the full width of the page. Text does not: a project
-   note running 1400px wide is unreadable, and the contrast between a narrow
-   column and wide imagery is what makes it read as editorial. */
-.project__name,
-.project__note { max-width: 60ch; }
-
-.project {
-  margin-bottom: 84px;
-  padding-top: 44px;
-  border-top: 1px solid var(--line);
-}
-
-.project:first-of-type { border-top: 0; padding-top: 0; }
-.project:last-child { margin-bottom: 0; }
-
-.project__name {
-  font-size: clamp(1.35rem, 4.2vw, 1.95rem);
-  letter-spacing: -0.015em;
-  margin-bottom: .35em;
-}
-
-.project__note {
-  color: var(--muted);
-  margin-bottom: 30px;
-  font-size: 1.02rem;
-}
-
-.project__grid {
+.mosaic {
   display: grid;
-  gap: 20px;
-}
-
-.project figure {
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 150px;
+  grid-auto-flow: dense;
+  gap: 10px;
+  list-style: none;
   margin: 0;
-  overflow: hidden;          /* clips the hover zoom */
-  border-radius: 3px;
-  background: var(--paper-2);
+  padding: 0;
 }
 
-.project img {
+.mosaic__item { grid-row: span 1; }
+
+.mosaic__btn {
+  position: relative;
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--paper-2);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.mosaic__btn img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+  transition: transform .8s cubic-bezier(.2, .7, .2, 1);
 }
 
-.project figure:hover img { transform: scale(1.035); }
+.mosaic__btn:hover img,
+.mosaic__btn:focus-visible img { transform: scale(1.05); }
 
-.project figcaption {
-  padding: 11px 2px 0;
+/* the project name only surfaces on hover, so the wall stays quiet */
+.mosaic__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 26px 14px 11px;
+  background: linear-gradient(180deg, rgba(8, 12, 18, 0), rgba(8, 12, 18, .78));
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-align: left;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.mosaic__btn:hover .mosaic__label,
+.mosaic__btn:focus-visible .mosaic__label { opacity: 1; }
+
+/* Cell shape follows the photograph. A portrait shot in a landscape cell
+   loses its top and bottom, which is most of the subject in a shower or a
+   tall cabinetry run. */
+@media (min-width: 620px) {
+  .mosaic {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 130px;
+    gap: 12px;
+  }
+
+  .mosaic__item--port { grid-column: span 1; grid-row: span 4; }
+  .mosaic__item--sq   { grid-column: span 2; grid-row: span 3; }
+  .mosaic__item--land { grid-column: span 2; grid-row: span 3; }
+  .mosaic__item--wide { grid-column: span 2; grid-row: span 2; }
+  .mosaic__item--hero { grid-column: span 4; grid-row: span 4; }
+}
+
+@media (min-width: 1100px) {
+  .mosaic { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 118px; }
+
+  .mosaic__item--port { grid-column: span 2; grid-row: span 5; }
+  .mosaic__item--sq   { grid-column: span 2; grid-row: span 4; }
+  .mosaic__item--land { grid-column: span 3; grid-row: span 4; }
+  .mosaic__item--wide { grid-column: span 3; grid-row: span 3; }
+  .mosaic__item--hero { grid-column: span 4; grid-row: span 6; }
+}
+
+@media (max-width: 619px) {
+  .mosaic__item--port { grid-row: span 3; }
+  .mosaic__item--sq,
+  .mosaic__item--land { grid-row: span 2; }
+  .mosaic__item--wide { grid-column: span 2; grid-row: span 2; }
+  .mosaic__item--hero { grid-column: span 2; grid-row: span 3; }
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  width: min(94vw, 1400px);
+  max-width: none;
+  max-height: 94vh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  color: #fff;
+}
+
+.lightbox::backdrop { background: rgba(6, 9, 14, .93); }
+
+.lightbox__figure { margin: 0; }
+
+.lightbox__img {
+  display: block;
+  width: 100%;
+  max-height: 84vh;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+.lightbox__cap {
+  margin-top: 12px;
+  text-align: center;
   font-size: .72rem;
   font-weight: 700;
   letter-spacing: .13em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255, 255, 255, .75);
 }
 
-@media (min-width: 620px) {
-  .project__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-
-  /* the lead runs the full width and sets the scale for the row beneath */
-  .project__lead { grid-column: 1 / -1; }
-  .project__lead img { aspect-ratio: 3 / 2; }
-
-  /* a two-photo project gets them side by side, taller */
-  .project__grid:not(:has(.project__lead)) img { aspect-ratio: 3 / 2; }
+.lightbox__close,
+.lightbox__nav {
+  position: fixed;
+  border: 0;
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background .2s ease;
 }
 
-@media (min-width: 1000px) {
-  .project { margin-bottom: 112px; padding-top: 60px; }
-  .project__grid { gap: 28px; }
-  .project__lead img { aspect-ratio: 2 / 1; }
-  .project__note { margin-bottom: 38px; }
+.lightbox__close:hover,
+.lightbox__nav:hover { background: rgba(255, 255, 255, .24); }
+
+.lightbox__close {
+  top: 16px;
+  right: 18px;
+  width: 46px;
+  height: 46px;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.lightbox__nav--prev { left: 14px; }
+.lightbox__nav--next { right: 14px; }
+
+@media (max-width: 620px) {
+  .lightbox__nav { width: 44px; height: 44px; font-size: 1.6rem; }
+  .lightbox__nav--prev { left: 6px; }
+  .lightbox__nav--next { right: 6px; }
 }
 
 /* ---------- Service area ---------- */
