@@ -469,6 +469,30 @@ p { margin: 0 0 1em; }
   }
 }
 
+/* ---------- Sections revealing on scroll ---------- */
+/* Scoped to sections that follow a hero, which only the home page has, so it
+   never collides with the page-load rise on the other pages.
+
+   Double-guarded: without scroll-timeline support, or with reduced motion
+   asked for, neither the animation nor the hidden start state is ever
+   applied, so nothing can be left stuck invisible. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes section-in {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    main > .hero ~ section {
+      animation: section-in linear both;
+      animation-timeline: view();
+      /* a length rather than a percentage, so a tall section reveals at the
+         same pace as a short one */
+      animation-range: entry 0% entry 240px;
+    }
+  }
+}
+
 /* ---------- Trust strip ---------- */
 .trust {
   background: var(--paper-2);
