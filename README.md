@@ -55,12 +55,12 @@ sticky call bar) plus the buttons in the page body. Search and replace:
   See "Contact form" below
 - Both review buttons in `reviews/index.html`, and the Google/Facebook links in
   every footer, are `href="#"` until the real profile URLs are in
-- "Currently booking into fall 2026" appears on the home and contact pages and
+- "Currently booking into Fall 2026" appears on the home and contact pages and
   will go stale. Both are marked with an HTML comment
 
 ## Confirmed by Joel
 
-Insurance (no WSIB needed, no employees), free quotes, booking into fall, and
+Insurance (no WSIB needed, no employees), free quotes, booking into Fall, and
 the service area: Norfolk County plus Brantford and Tillsonburg. He does not
 want calls about roofing, exterior siding, windows and doors, plumbing or
 electrical.
