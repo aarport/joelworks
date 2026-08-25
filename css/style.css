@@ -247,8 +247,10 @@ p { margin: 0 0 1em; }
   object-fit: cover;
   object-position: center;
   opacity: .85;
-  /* pushes past the cover crop so the room feels closer */
-  transform: scale(1.12);
+  /* pushes past the cover crop so the room feels closer, and leaves
+     headroom for the parallax drift below */
+  --hero-zoom: 1.12;
+  transform: scale(var(--hero-zoom));
 }
 
 /* Scrim: lets the photo read properly while keeping the text legible over it.
@@ -285,6 +287,26 @@ p { margin: 0 0 1em; }
   font-weight: 700;
   letter-spacing: .09em;
   text-transform: uppercase;
+}
+
+/* ---------- Hero parallax ---------- */
+/* Scroll-driven CSS animation: no JavaScript, and browsers without support
+   simply keep the static hero. Drift stays inside the zoom headroom so no
+   edge of the photo is ever exposed. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes hero-drift {
+      from { transform: scale(var(--hero-zoom)) translateY(-4%); }
+      to   { transform: scale(var(--hero-zoom)) translateY(4%); }
+    }
+
+    .hero__img {
+      animation: hero-drift linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+      will-change: transform;
+    }
+  }
 }
 
 /* ---------- Trust strip ---------- */
@@ -661,7 +683,7 @@ p { margin: 0 0 1em; }
   /* the wide letterbox crop pulls the room away, so zoom harder here.
      Framed above centre to keep the pendants in shot. */
   .hero__img {
-    transform: scale(1.16);
+    --hero-zoom: 1.16;
     object-position: center 38%;
   }
   .split { grid-template-columns: 1fr 1fr; gap: 40px; }
