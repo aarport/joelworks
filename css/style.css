@@ -220,6 +220,14 @@ p { margin: 0 0 1em; }
   gap: 12px;
 }
 
+/* Registered so the hover zoom can transition. Unregistered custom
+   properties are not animatable, they would jump. */
+@property --zoom-add {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
@@ -238,11 +246,12 @@ p { margin: 0 0 1em; }
   object-position: center;
   /* pushes past the cover crop so the room feels closer, and leaves
      headroom for the parallax drift below */
-  --hero-zoom: 1.12;
+  --zoom-base: 1.12;
+  --hero-zoom: calc(var(--zoom-base) + var(--zoom-add));
   transform: scale(var(--hero-zoom));
   /* stacked: default shows, the rest fade in on trade hover */
   opacity: 0;
-  transition: opacity .45s ease;
+  transition: opacity .45s ease, --zoom-add .8s ease;
 }
 
 .hero__img--default { opacity: 1; }
@@ -348,10 +357,12 @@ p { margin: 0 0 1em; }
   transition: background .25s ease, box-shadow .25s ease;
 }
 
-/* two across on phones: no left rule on the first of each row,
-   and a rule above the second row */
-.trade:nth-child(2n + 1) { border-left: 0; }
-.trade:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, .3); }
+/* two across on phones: no left rule on the first of each row, and a rule
+   above the second row. Scoped, or these outrank the desktop rules below. */
+@media (max-width: 699px) {
+  .trade:nth-child(2n + 1) { border-left: 0; }
+  .trade:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, .28); }
+}
 
 /* hover keeps the photo visible rather than covering it */
 .trade:hover,
@@ -388,6 +399,7 @@ p { margin: 0 0 1em; }
   body:has(.trade--basements:hover) .hero__img--basements,
   body:has(.trade--tile:hover) .hero__img--tile {
     opacity: 1;
+    --zoom-add: .09;
   }
 }
 
@@ -765,7 +777,7 @@ p { margin: 0 0 1em; }
   /* the wide letterbox crop pulls the room away, so zoom harder here.
      Framed above centre to keep the pendants in shot. */
   .hero__img {
-    --hero-zoom: 1.16;
+    --zoom-base: 1.16;
     object-position: center 38%;
   }
   .split { grid-template-columns: 1fr 1fr; gap: 40px; }
