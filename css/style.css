@@ -221,14 +221,6 @@ p { margin: 0 0 1em; }
   gap: 12px;
 }
 
-/* Registered so the hover zoom can transition. Unregistered custom
-   properties are not animatable, they would jump. */
-@property --zoom-add {
-  syntax: "<number>";
-  inherits: false;
-  initial-value: 0;
-}
-
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
@@ -237,10 +229,19 @@ p { margin: 0 0 1em; }
   overflow: hidden;
 }
 
-.hero__img {
+/* The wrapper carries the parallax, the images carry the zoom. They have to
+   sit on separate elements: a scroll-driven animation only samples while the
+   page is scrolling, so a hover zoom sharing that transform lags whenever the
+   page is still. */
+.hero__media {
   position: absolute;
   inset: 0;
   z-index: 0;
+}
+
+.hero__img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -248,11 +249,10 @@ p { margin: 0 0 1em; }
   /* pushes past the cover crop so the room feels closer, and leaves
      headroom for the parallax drift below */
   --zoom-base: 1.20;
-  --hero-zoom: calc(var(--zoom-base) + var(--zoom-add));
-  transform: scale(var(--hero-zoom));
+  transform: scale(var(--zoom-base));
   /* stacked: default shows, the rest fade in on trade hover */
   opacity: 0;
-  transition: opacity .45s ease, --zoom-add .8s ease;
+  transition: opacity .45s ease, transform .8s ease;
 }
 
 .hero__img--default { opacity: 1; }
@@ -313,11 +313,11 @@ p { margin: 0 0 1em; }
 @supports (animation-timeline: scroll()) {
   @media (prefers-reduced-motion: no-preference) {
     @keyframes hero-drift {
-      from { transform: scale(var(--hero-zoom)) translateY(-6%); }
-      to   { transform: scale(var(--hero-zoom)) translateY(6%); }
+      from { transform: translateY(-7%); }
+      to   { transform: translateY(7%); }
     }
 
-    .hero__img {
+    .hero__media {
       animation: hero-drift linear both;
       animation-timeline: scroll(root block);
       /* travel completes over less scroll, so it reads as faster */
@@ -401,7 +401,7 @@ p { margin: 0 0 1em; }
   body:has(.trade--basements:hover) .hero__img--basements,
   body:has(.trade--tile:hover) .hero__img--tile {
     opacity: 1;
-    --zoom-add: .09;
+    transform: scale(calc(var(--zoom-base) + .09));
   }
 }
 
