@@ -498,6 +498,45 @@ p { margin: 0 0 1em; }
   color: var(--accent);
 }
 
+/* ---------- Screw "o", borrowed from the logo ---------- */
+/* In the wordmark the O is a solid disc with a slot cut through it, running
+   about 56 degrees. The letter stays in the markup and is only made
+   transparent, so screen readers, search and copy-paste get the real word. */
+.screw {
+  position: relative;
+  color: transparent;
+  --screw-bg: var(--paper);
+}
+
+.section--tint .screw,
+.trust .screw { --screw-bg: var(--paper-2); }
+
+.screw::before,
+.screw::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(50% + .03em);
+}
+
+/* the disc */
+.screw::before {
+  width: .60em;
+  height: .60em;
+  margin: -.30em 0 0 -.30em;
+  background: var(--ink);
+  border-radius: 50%;
+}
+
+/* the slot cut through it */
+.screw::after {
+  width: .80em;
+  height: .075em;
+  margin: -.0375em 0 0 -.40em;
+  background: var(--screw-bg);
+  transform: rotate(-56deg);
+}
+
 /* ---------- Cards ---------- */
 .grid {
   display: grid;
