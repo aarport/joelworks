@@ -623,6 +623,9 @@ p { margin: 0 0 1em; }
   margin-top: 22px;
 }
 
+.social-row { margin-top: 20px; }
+
+.social-row,
 .work-actions__social {
   display: flex;
   align-items: center;
@@ -636,10 +639,11 @@ p { margin: 0 0 1em; }
 }
 
 /* The footer .social rules are declared later in this file, so the light
-   variant has to out-specify them rather than rely on order. */
-.work-actions .social--light { margin-top: 0; }
+   variant doubles up its class to out-specify them rather than rely on
+   source order. Usable anywhere on a light background. */
+.social.social--light { margin-top: 0; }
 
-.work-actions .social--light a {
+.social.social--light a {
   width: 40px;
   height: 40px;
   border: 1px solid var(--line);
@@ -647,14 +651,14 @@ p { margin: 0 0 1em; }
   background: #fff;
 }
 
-.work-actions .social--light a:hover,
-.work-actions .social--light a:focus-visible {
+.social.social--light a:hover,
+.social.social--light a:focus-visible {
   background: var(--brand);
   border-color: var(--brand);
   color: #fff;
 }
 
-.work-actions .social--light svg { width: 20px; height: 20px; }
+.social.social--light svg { width: 20px; height: 20px; }
 
 /* ---------- Steps ---------- */
 .steps {
