@@ -695,6 +695,9 @@ p { margin: 0 0 1em; }
   /* the wide shot leads, the detail shots sit under it */
   .project__lead { grid-column: 1 / -1; }
   .project__lead img { aspect-ratio: 16 / 9; }
+
+  /* a project with only two photos gets them side by side, taller */
+  .project__grid:not(:has(.project__lead)) img { aspect-ratio: 3 / 2; }
 }
 
 @media (min-width: 900px) {
