@@ -10,9 +10,9 @@ straight from the repo root so GitHub Pages can host it as-is.
 
 ```
 index.html      home
-services.html   services
-gallery.html    recent work
-contact.html    contact details + quote form
+services/       services
+gallery/        recent work
+contact/        contact details + quote form
 reviews/        review request page: the link Joel texts after a job
 css/style.css   the whole stylesheet
 images/         logo + placeholder job photos (SVG)
@@ -70,7 +70,7 @@ No em dashes or en dashes anywhere. Use commas, colons or full stops.
 
 ## Contact form
 
-`contact.html` posts to FormSubmit, which needs no account. Enquiries go to
+`contact/index.html` posts to FormSubmit, which needs no account. Enquiries go to
 `joel@joelworks.ca`, which forwards to Joel's inbox. The form redirects to
 `/thanks` on success.
 
