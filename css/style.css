@@ -460,22 +460,6 @@ p { margin: 0 0 1em; }
 }
 .contact-list a:hover { text-decoration: underline; }
 
-.hours {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: .97rem;
-}
-
-.hours th,
-.hours td {
-  text-align: left;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.hours th { font-weight: 600; }
-.hours td { text-align: right; color: var(--muted); }
-
 /* ---------- Form ---------- */
 .form { display: grid; gap: 16px; }
 
