@@ -68,7 +68,8 @@ p { margin: 0 0 1em; }
   width: 100%;
   max-width: var(--wrap);
   margin: 0 auto;
-  padding: 0 20px;
+  /* generous on phones, where content otherwise crowds the bezel */
+  padding: 0 26px;
 }
 
 .skip {
@@ -266,7 +267,10 @@ p { margin: 0 0 1em; }
 .hero__inner {
   position: relative;
   z-index: 2;
-  padding: 52px 0 48px;
+  /* vertical only: the shorthand would reset .wrap's side padding to 0
+     and pin the headline to the screen edge */
+  padding-top: 52px;
+  padding-bottom: 48px;
 }
 
 .hero h1 { margin-bottom: .35em; }
@@ -673,8 +677,9 @@ p { margin: 0 0 1em; }
   .site-nav a { padding: 14px 14px; }
   .site-nav ul { margin-left: -14px; }
 
+  .wrap { padding: 0 32px; }
   .section { padding: 60px 0; }
-  .hero__inner { padding: 90px 0 84px; }
+  .hero__inner { padding-top: 90px; padding-bottom: 84px; }
 
   .hero::after {
     background: linear-gradient(90deg, rgba(18, 41, 63, .93) 0%, rgba(18, 41, 63, .82) 42%, rgba(18, 41, 63, .38) 100%);
