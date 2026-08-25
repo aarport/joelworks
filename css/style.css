@@ -694,6 +694,60 @@ p { margin: 0 0 1em; }
 .steps h3 { margin-bottom: .25em; }
 .steps p { margin-bottom: 0; color: var(--muted); }
 
+/* ---------- Gallery banner follow block ---------- */
+/* Fills the space the measured text column leaves on the right, and turns
+   the profiles into a real call to action rather than two small icons. */
+.gallery-head { display: grid; gap: 26px; }
+
+.gallery-head__copy { min-width: 0; }
+
+.follow__title {
+  margin: 0 0 14px;
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 14ch;
+}
+
+.follow__links { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.follow__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--brand);
+  font-size: .92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.follow__btn svg { width: 20px; height: 20px; flex: none; }
+
+.follow__btn:hover,
+.follow__btn:focus-visible {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+@media (min-width: 900px) {
+  .gallery-head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 48px;
+  }
+
+  .follow { text-align: right; justify-self: end; }
+  .follow__title { max-width: 12ch; margin-left: auto; }
+  .follow__links { justify-content: flex-end; }
+}
+
 /* ---------- Gallery mosaic ---------- */
 /* A wall of work rather than stacked articles. Heading-paragraph-images
    repeated down a page reads as a blog; a dense grid reads as a portfolio. */
