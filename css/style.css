@@ -532,10 +532,13 @@ p { margin: 0 0 1em; }
 }
 
 /* the slot cut through it */
+/* The slot needs a pixel floor. At .075em it came out 2.3px wide, thin
+   enough that each heading landed on different sub-pixel boundaries and
+   antialiased slightly differently, so no two looked alike. */
 .screw::after {
-  width: .80em;
-  height: .075em;
-  margin: -.0375em 0 0 -.40em;
+  width: .84em;
+  height: max(3px, .095em);
+  margin: calc(max(3px, .095em) / -2) 0 0 -.42em;
   background: var(--screw-bg);
   transform: rotate(-56deg);
 }
