@@ -51,8 +51,7 @@ sticky call bar) plus the buttons in the page body. Search and replace:
 - The "Meet Joel" bio on the home page, assembled from the Facebook blurb and
   the reviews rather than written by Joel
 - Deposit terms and payment methods on the services page
-- The contact form posts to FormSubmit and needs a one-time activation.
-  See "Contact form" below
+
 - Both review buttons in `reviews/index.html`, and the Google/Facebook links in
   every footer, are `href="#"` until the real profile URLs are in
 - "Currently booking into Fall 2026" appears on the home and contact pages and
@@ -75,17 +74,18 @@ No em dashes or en dashes anywhere. Use commas, colons or full stops.
 `joel@joelworks.ca`, which forwards to Joel's inbox. The form redirects to
 `/thanks` on success.
 
-**One-time activation.** The first submission is not delivered. It triggers a
-confirmation email instead:
+**Status: activated and verified end to end on 25 Aug 2026.** A test
+submission reached Joel's inbox through the forward, with all fields intact.
 
-1. Open <https://joelworks.ca/contact.html> and submit the form once
-2. A confirmation email arrives from FormSubmit
-3. Click the link in it
-4. Submit once more and check it arrives
+Reply-To is set from the `email` field, so replying to a notification goes
+straight back to the customer.
 
-Because `joel@joelworks.ca` forwards rather than being a real mailbox,
-forwarded mail can land in spam. If the confirmation does not show up, check
-the spam folder first.
+FormSubmit's free tier appends a sponsor ad to the notification email. It is
+only in the copy Joel receives, never visible to anyone submitting the form.
+
+If notifications ever stop arriving, check spam first: `joel@joelworks.ca`
+forwards rather than being a real mailbox, and forwarding breaks SPF
+alignment, which AOL treats harshly.
 
 To swap services later, only the `action` attribute needs changing. The
 hidden `_subject`, `_template`, `_next` and `_captcha` fields are
