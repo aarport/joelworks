@@ -48,9 +48,18 @@ under `id="project-data"`. To add a job, drop the photos in `images/`, add an
 entry there, and add a tile to the mosaic pointing at it with
 `data-project`.
 
-Tile shape is chosen from each hero photo's aspect ratio, so a portrait shot
-gets a tall cell. Put a portrait photo in a landscape cell and the crop eats
-the top and bottom, which in a shower is most of the subject.
+The grid is a masonry column flow, not a row grid. A row grid leaves holes
+wherever the spans do not pack, and forcing photos into fixed cells crops
+them. In columns nothing is cropped and there are no gaps: every tile runs at
+its true aspect.
+
+The one exception is the feature image at the top, which is cropped to a wide
+band. That slot needs a landscape photo; a portrait one becomes a thin
+useless strip.
+
+Order is curated, strongest first, not chronological. Both the feature and
+the tile order are set near the bottom of `gallery.html`; regenerate rather
+than hand-edit if you reorder.
 
 ## JavaScript
 
