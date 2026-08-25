@@ -84,9 +84,13 @@ The line naming a month on the home and contact pages. It goes stale faster
 than anything else on the site, and a stale one is worse than none: it tells
 visitors nobody maintains the place.
 
-It updates itself. `.github/workflows/availability.yml` runs on the 1st of
-each month and rolls it to "Openings through <next month>", commits, and the
-site redeploys.
+It updates itself. `.github/workflows/availability.yml` runs on the 1st and
+the 20th and sets it to "Booking <month>": the current month up to the 19th,
+then the next one from the 20th, so it never advertises a month that is
+nearly over.
+
+    1-19 Sep   ->  Booking September
+    20-30 Sep  ->  Booking October
 
 **To say something specific, put one line in `availability.txt`:**
 
@@ -97,14 +101,13 @@ control back to the rolling default. Run `python3
 scripts/update-availability.py` to apply it locally, or trigger the workflow
 by hand from the Actions tab.
 
-**Two things to watch.** The rolling default claims Joel has openings next
-month, every month, which nobody confirms. If he gets booked up, put it in
-`availability.txt` or the site will keep advertising capacity he does not
-have.
+"Booking <month>" is deliberately a scheduling statement, not a promise of a
+free slot. It stays true whether or not Joel has a gap that month, which
+matters because nobody confirms it before it publishes.
 
-And the pill has a green dot that reads as "available". If you set a message
-saying the opposite, the dot contradicts the words; either reword it or drop
-the pill for that period.
+One thing to watch: the pill has a green dot that reads as "available". If
+you set a message saying the opposite, the dot contradicts the words; either
+reword it or drop the pill for that period.
 
 ## Contact form
 

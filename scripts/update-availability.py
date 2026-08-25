@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Roll the availability line forward so it never reads as stale.
 
-Default: "Openings through <next month>".
+Default: "Booking <month>". Names the current month up to the 19th, then
+flips to the next one on the 20th, so it is never advertising a month that
+is nearly gone.
 
 Override: put a line in availability.txt and that text is used verbatim and
 never rolled. Use it whenever Joel tells you something specific, e.g.
@@ -18,9 +20,15 @@ PAGES = ['index.html', 'contact.html']
 MARK = re.compile(r'(<p class="availability[^"]*">)([^<]*)(</p>)')
 
 
+FLIP_DAY = 20
+
+
 def rolling_text(today):
-    nxt = (today.replace(day=1) + dt.timedelta(days=32)).replace(day=1)
-    return f'Openings through {nxt:%B}'
+    """Current month until FLIP_DAY, then the next one."""
+    month = today
+    if today.day >= FLIP_DAY:
+        month = (today.replace(day=1) + dt.timedelta(days=32)).replace(day=1)
+    return f'Booking {month:%B}'
 
 
 def main():

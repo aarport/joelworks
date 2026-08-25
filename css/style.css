@@ -497,6 +497,38 @@ p { margin: 0 0 1em; }
   width: 100%;
 }
 
+/* ---------- Work preview on the home page ---------- */
+.work-preview {
+  display: grid;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.work-preview a {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+}
+
+.work-preview img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+
+.work-preview a:hover img,
+.work-preview a:focus-visible img { transform: scale(1.04); }
+
+@media (min-width: 700px) {
+  .work-preview { grid-template-columns: repeat(3, 1fr); }
+}
+
 /* ---------- Steps ---------- */
 .steps {
   counter-reset: step;
