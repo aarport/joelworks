@@ -1,4 +1,4 @@
-/* Joel Works — single stylesheet. Mobile-first, no framework, no build step. */
+/* Joel Works: single stylesheet. Mobile-first, no framework, no build step. */
 
 /* ---------- Tokens ---------- */
 :root {
@@ -135,7 +135,7 @@ p { margin: 0 0 1em; }
   color: var(--muted);
 }
 
-/* Header phone — hidden on phones, where the sticky bar does the job */
+/* Header phone: hidden on phones, where the sticky bar does the job */
 .header-phone {
   display: none;
   color: var(--brand);
