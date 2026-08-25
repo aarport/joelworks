@@ -13,16 +13,6 @@
       <img src="images/logo.svg" alt="Joel Works" width="68" height="68">
     </a>
 
-    <p class="brand__sub">
-      <span>Kitchens</span>
-      <span>Bathrooms</span>
-      <span>Tile</span>
-    </p>
-
-    <a class="header-phone" href="tel:+12269315768">
-      <span>Call or text</span>(226) 931-5768
-    </a>
-
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="index.html" aria-current="page">Home</a></li>
@@ -31,17 +21,37 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+
+
+    <a class="header-phone" href="tel:+12269315768">
+      <span>Call or text</span>(226) 931-5768
+    </a>
   </div>
 </header>
 
 <main id="main">
 
   <section class="hero">
-    <img class="hero__img" alt=""
+    <img class="hero__img hero__img--default" alt=""
          src="images/hero-kitchen-1200.jpg"
          srcset="images/hero-kitchen-1200.jpg 1200w, images/hero-kitchen-2400.jpg 2400w"
-         sizes="100vw"
-         width="2400" height="1800">
+         sizes="100vw" width="2400" height="1800">
+    <img class="hero__img hero__img--kitchens" alt="" loading="lazy"
+         src="images/hero-kitchens-1200.jpg"
+         srcset="images/hero-kitchens-1200.jpg 1200w, images/hero-kitchens-2400.jpg 2400w"
+         sizes="100vw" width="2400" height="1800">
+    <img class="hero__img hero__img--tile" alt="" loading="lazy"
+         src="images/hero-tile-1200.jpg"
+         srcset="images/hero-tile-1200.jpg 1200w, images/hero-tile-2400.jpg 2400w"
+         sizes="100vw" width="2400" height="1800">
+    <img class="hero__img hero__img--bathrooms" alt="" loading="lazy"
+         src="images/hero-bathrooms-1200.jpg"
+         srcset="images/hero-bathrooms-1200.jpg 1200w, images/hero-bathrooms-1440.jpg 1440w"
+         sizes="100vw" width="1440" height="1080">
+    <img class="hero__img hero__img--basements" alt="" loading="lazy"
+         src="images/hero-basements-1200.jpg"
+         srcset="images/hero-basements-1200.jpg 1200w, images/hero-basements-1440.jpg 1440w"
+         sizes="100vw" width="1440" height="1081">
     <div class="wrap hero__inner">
       <p class="eyebrow">Serving Simcoe &middot; Brantford &middot; Tillsonburg</p>
       <h1>Built to the detail you pictured.</h1>
@@ -54,7 +64,15 @@
       <!-- UPDATE THIS as the schedule moves; it goes stale fast -->
       <p class="availability">Currently booking into fall 2026</p>
     </div>
+
+    <nav class="trades" aria-label="What we do">
+      <a class="trade trade--kitchens" href="services.html#kitchens">Kitchens</a>
+      <a class="trade trade--bathrooms" href="services.html#bathrooms">Bathrooms</a>
+      <a class="trade trade--basements" href="services.html#basements">Basements</a>
+      <a class="trade trade--tile" href="services.html#tile">Tile</a>
+    </nav>
   </section>
+
 
   <section class="trust">
     <div class="wrap">
@@ -69,7 +87,7 @@
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          5.0 on Google
+          5.0 on Google, 100% on Facebook
         </li>
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>

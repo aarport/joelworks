@@ -108,9 +108,8 @@ p { margin: 0 0 1em; }
 
 .site-header .wrap {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 8px 18px;
+  gap: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -118,29 +117,14 @@ p { margin: 0 0 1em; }
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex: none;
   color: var(--ink);
   text-decoration: none;
-  margin-right: auto;
 }
 .brand:hover { color: var(--ink); }
 .brand img { flex: none; }
-.brand img { width: 56px; height: 56px; }
+.brand img { width: 46px; height: 46px; }
 
-/* Own row on phones, spread edge to edge. Sits inline beside the logo
-   once there is width for it. */
-.brand__sub {
-  flex-basis: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin: 2px 0 0;
-  font-size: .7rem;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
 
 /* Header phone: hidden on phones, where the sticky bar does the job */
 .header-phone {
@@ -161,14 +145,11 @@ p { margin: 0 0 1em; }
 }
 
 /* ---------- Nav ---------- */
-.site-nav {
-  width: 100%;
-  border-top: 1px solid var(--line);
-}
+.site-nav { min-width: 0; }
 
 .site-nav ul {
   display: flex;
-  gap: 4px;
+  gap: 0;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -176,7 +157,9 @@ p { margin: 0 0 1em; }
 
 .site-nav a {
   display: block;
-  padding: 12px 10px;
+  padding: 12px 8px;
+  font-size: .85rem;
+  white-space: nowrap;
   color: var(--muted);
   text-decoration: none;
   font-size: .95rem;
@@ -253,12 +236,16 @@ p { margin: 0 0 1em; }
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: .85;
   /* pushes past the cover crop so the room feels closer, and leaves
      headroom for the parallax drift below */
   --hero-zoom: 1.12;
   transform: scale(var(--hero-zoom));
+  /* stacked: default shows, the rest fade in on trade hover */
+  opacity: 0;
+  transition: opacity .45s ease;
 }
+
+.hero__img--default { opacity: .85; }
 
 /* Scrim: lets the photo read properly while keeping the text legible over it.
    On phones the text sits over the whole width, so the wash is even. */
@@ -318,6 +305,82 @@ p { margin: 0 0 1em; }
     }
   }
 }
+
+/* ---------- Trade bar under the hero ---------- */
+/* Sits inside the hero so the photo runs behind it. Buttons stay
+   transparent; hairlines do the dividing. */
+.trades {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid rgba(255, 255, 255, .3);
+}
+
+.trade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 84px;
+  padding: 18px 10px;
+  background: transparent;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-size: .92rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  border-left: 1px solid rgba(255, 255, 255, .3);
+  box-shadow: inset 0 0 0 0 rgba(255, 255, 255, .14);
+  transition: background .25s ease, box-shadow .25s ease;
+}
+
+/* two across on phones: no left rule on the first of each row,
+   and a rule above the second row */
+.trade:nth-child(2n + 1) { border-left: 0; }
+.trade:nth-child(n + 3) { border-top: 1px solid rgba(255, 255, 255, .3); }
+
+/* hover keeps the photo visible rather than covering it */
+.trade:hover,
+.trade:focus-visible {
+  background: rgba(255, 255, 255, .13);
+  box-shadow: inset 0 -3px 0 0 var(--accent);
+  color: #fff;
+}
+
+@media (min-width: 700px) {
+  .trades { grid-template-columns: repeat(4, 1fr); }
+
+  .trade {
+    min-height: 104px;
+    font-size: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, .3);
+    border-top: 0;
+  }
+  .trade:first-child { border-left: 0; }
+}
+
+/* Hovering a trade swaps the hero photo. Pointer devices only, and it needs
+   :has(), so anything without it simply keeps the default image. */
+@media (hover: hover) {
+  body:has(.trade--kitchens:hover) .hero__img--default,
+  body:has(.trade--bathrooms:hover) .hero__img--default,
+  body:has(.trade--basements:hover) .hero__img--default,
+  body:has(.trade--tile:hover) .hero__img--default {
+    opacity: 0;
+  }
+
+  body:has(.trade--kitchens:hover) .hero__img--kitchens,
+  body:has(.trade--bathrooms:hover) .hero__img--bathrooms,
+  body:has(.trade--basements:hover) .hero__img--basements,
+  body:has(.trade--tile:hover) .hero__img--tile {
+    opacity: .85;
+  }
+}
+
+/* anchors from the trade bar should not land under anything */
+.card[id] { scroll-margin-top: 90px; }
 
 /* ---------- Trust strip ---------- */
 .trust {
@@ -666,31 +729,15 @@ p { margin: 0 0 1em; }
   .callbar { display: none; }
   .header-phone { display: block; text-align: right; margin-left: auto; }
 
-  .brand { margin-right: 0; }
-
-  .brand__sub {
-    flex-basis: auto;
-    gap: 1.6rem;
-    margin: 0 0 0 26px;
-    letter-spacing: .12em;
-  }
-
   .site-header .wrap {
-    padding-top: 14px;
-    padding-bottom: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
 
-  .brand img { width: 68px; height: 68px; }
+  .brand img { width: 64px; height: 64px; }
 
-  .site-nav {
-    border-top: 0;
-    width: auto;
-    order: 3;
-    flex-basis: 100%;
-  }
-
-  .site-nav a { padding: 14px 14px; }
-  .site-nav ul { margin-left: -14px; }
+  .site-nav a { padding: 14px 14px; font-size: .95rem; }
+  .site-nav ul { margin-left: 12px; }
 
   .wrap { padding: 0 32px; }
   .section { padding: 60px 0; }
