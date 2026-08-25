@@ -290,9 +290,25 @@ p { margin: 0 0 1em; }
 .hero p {
   color: #e8eef5;
   font-size: 1.075rem;
-  max-width: 46ch;
   text-shadow: 0 1px 12px rgba(0, 0, 0, .5);
 }
+
+/* Headline and lede share one measure so their left and right edges line up,
+   and the lede justifies to a flush right edge. Targets the unclassed
+   paragraph only: the eyebrow and availability pills are also <p>. */
+.hero h1,
+.hero__inner > p:not([class]) {
+  max-width: 40rem;
+}
+
+.hero__inner > p:not([class]) {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* even vertical rhythm between every block in the hero */
+.hero__inner > * { margin-top: 0; margin-bottom: 0; }
+.hero__inner > * + * { margin-top: 20px; }
 
 .eyebrow {
   display: inline-block;
