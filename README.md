@@ -51,7 +51,8 @@ sticky call bar) plus the buttons in the page body. Search and replace:
 - The "Meet Joel" bio on the home page, assembled from the Facebook blurb and
   the reviews rather than written by Joel
 - Deposit terms and payment methods on the services page
-- The contact form needs a form service. See the comment in `contact.html`
+- The contact form posts to FormSubmit and needs a one-time activation.
+  See "Contact form" below
 - Both review buttons in `reviews/index.html`, and the Google/Facebook links in
   every footer, are `href="#"` until the real profile URLs are in
 - "Currently booking into fall 2026" appears on the home and contact pages and
@@ -67,6 +68,29 @@ electrical.
 ## House style
 
 No em dashes or en dashes anywhere. Use commas, colons or full stops.
+
+## Contact form
+
+`contact.html` posts to FormSubmit, which needs no account. Enquiries go to
+`joel@joelworks.ca`, which forwards to Joel's inbox. The form redirects to
+`/thanks` on success.
+
+**One-time activation.** The first submission is not delivered. It triggers a
+confirmation email instead:
+
+1. Open <https://joelworks.ca/contact.html> and submit the form once
+2. A confirmation email arrives from FormSubmit
+3. Click the link in it
+4. Submit once more and check it arrives
+
+Because `joel@joelworks.ca` forwards rather than being a real mailbox,
+forwarded mail can land in spam. If the confirmation does not show up, check
+the spam folder first.
+
+To swap services later, only the `action` attribute needs changing. The
+hidden `_subject`, `_template`, `_next` and `_captcha` fields are
+FormSubmit-specific; `_honey` is a spam trap and should stay whatever the
+service.
 
 ## Logo
 
