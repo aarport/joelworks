@@ -432,7 +432,7 @@ p { margin: 0 0 1em; }
 
 .trust ul {
   display: grid;
-  gap: 10px;
+  gap: 10px 22px;
   list-style: none;
   margin: 0;
   padding: 18px 0;
@@ -765,6 +765,32 @@ p { margin: 0 0 1em; }
 }
 .site-footer li { margin-bottom: .45em; }
 
+/* social icons */
+.social {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 50%;
+  color: #fff;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.social a:hover,
+.social a:focus-visible {
+  background: rgba(255, 255, 255, .14);
+  border-color: rgba(255, 255, 255, .55);
+}
+
+.social svg { width: 19px; height: 19px; }
+
 .site-footer .legal {
   border-top: 1px solid rgba(255, 255, 255, .16);
   padding-top: 18px;
@@ -815,7 +841,7 @@ p { margin: 0 0 1em; }
 @media (min-width: 560px) {
   .grid--2, .grid--3 { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(2, 1fr); }
-  .trust ul { grid-template-columns: repeat(2, 1fr); }
+  .trust ul { grid-template-columns: repeat(2, auto); justify-content: space-between; }
   .form .field--half-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -857,9 +883,40 @@ p { margin: 0 0 1em; }
   }
   .split { grid-template-columns: 1fr 1fr; gap: 40px; }
   .split--flip img { order: 2; }
-  .trust ul { grid-template-columns: repeat(4, 1fr); }
+  /* auto columns size to the text, so the space between items is what gets
+     shared out, not the columns themselves */
+  .trust ul {
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+  }
   .site-footer .wrap { grid-template-columns: 1.4fr 1fr 1fr; }
-  .site-footer .legal { grid-column: 1 / -1; }
+  /* social icons */
+.social {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 50%;
+  color: #fff;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.social a:hover,
+.social a:focus-visible {
+  background: rgba(255, 255, 255, .14);
+  border-color: rgba(255, 255, 255, .55);
+}
+
+.social svg { width: 19px; height: 19px; }
+
+.site-footer .legal { grid-column: 1 / -1; }
 }
 
 @media (min-width: 900px) {
