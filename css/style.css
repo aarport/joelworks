@@ -649,31 +649,53 @@ p { margin: 0 0 1em; }
 .steps p { margin-bottom: 0; color: var(--muted); }
 
 /* ---------- Gallery ---------- */
-.project { margin-bottom: 52px; }
+/* Photographs sit on the page rather than inside cards. Borders, white card
+   backgrounds and heavy rounding all read as "web content"; portfolios show
+   the work with nothing around it. */
+.gallery-wrap {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 26px;
+}
+
+/* Photographs take the full width of the page. Text does not: a project
+   note running 1400px wide is unreadable, and the contrast between a narrow
+   column and wide imagery is what makes it read as editorial. */
+.project__name,
+.project__note { max-width: 60ch; }
+
+.project {
+  margin-bottom: 84px;
+  padding-top: 44px;
+  border-top: 1px solid var(--line);
+}
+
+.project:first-of-type { border-top: 0; padding-top: 0; }
 .project:last-child { margin-bottom: 0; }
 
 .project__name {
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
-  margin-bottom: .3em;
+  font-size: clamp(1.35rem, 4.2vw, 1.95rem);
+  letter-spacing: -0.015em;
+  margin-bottom: .35em;
 }
 
 .project__note {
   color: var(--muted);
-  max-width: 56ch;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-size: 1.02rem;
 }
 
 .project__grid {
   display: grid;
-  gap: 14px;
+  gap: 20px;
 }
 
 .project figure {
   margin: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: #fff;
+  overflow: hidden;          /* clips the hover zoom */
+  border-radius: 3px;
+  background: var(--paper-2);
 }
 
 .project img {
@@ -681,28 +703,36 @@ p { margin: 0 0 1em; }
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
+  transition: transform .7s cubic-bezier(.2, .7, .2, 1);
 }
 
+.project figure:hover img { transform: scale(1.035); }
+
 .project figcaption {
-  padding: 11px 14px;
-  font-size: .9rem;
+  padding: 11px 2px 0;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
   color: var(--muted);
 }
 
 @media (min-width: 620px) {
-  .project__grid { grid-template-columns: repeat(2, 1fr); }
+  .project__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
 
-  /* the wide shot leads, the detail shots sit under it */
+  /* the lead runs the full width and sets the scale for the row beneath */
   .project__lead { grid-column: 1 / -1; }
-  .project__lead img { aspect-ratio: 16 / 9; }
+  .project__lead img { aspect-ratio: 3 / 2; }
 
-  /* a project with only two photos gets them side by side, taller */
+  /* a two-photo project gets them side by side, taller */
   .project__grid:not(:has(.project__lead)) img { aspect-ratio: 3 / 2; }
 }
 
-@media (min-width: 900px) {
-  .project__grid--even { grid-template-columns: repeat(4, 1fr); }
-  .project__grid--even img { aspect-ratio: 1 / 1; }
+@media (min-width: 1000px) {
+  .project { margin-bottom: 112px; padding-top: 60px; }
+  .project__grid { gap: 28px; }
+  .project__lead img { aspect-ratio: 2 / 1; }
+  .project__note { margin-bottom: 38px; }
 }
 
 /* ---------- Service area ---------- */
