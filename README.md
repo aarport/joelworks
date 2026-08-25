@@ -64,12 +64,12 @@ sticky call bar) plus the buttons in the page body. Search and replace:
 
 - Both review buttons in `reviews/index.html`, and the Google/Facebook links in
   every footer, are `href="#"` until the real profile URLs are in
-- "Currently booking into Fall 2026" appears on the home and contact pages and
-  will go stale. Both are marked with an HTML comment
+- Availability appears on the home and contact pages and goes stale fastest.
+  See "Availability line" below
 
 ## Confirmed by Joel
 
-Insurance (no WSIB needed, no employees), free quotes, booking into Fall, and
+Insurance (no WSIB needed, no employees), free quotes, and
 the service area: Norfolk County plus Brantford and Tillsonburg. He does not
 want calls about roofing, exterior siding, windows and doors, plumbing or
 electrical.
@@ -77,6 +77,21 @@ electrical.
 ## House style
 
 No em dashes or en dashes anywhere. Use commas, colons or full stops.
+
+## Availability line
+
+The single thing Joel most wants changed, and the fastest to go stale. The
+exact same string appears twice, so a find-and-replace across the repo does
+it in one pass:
+
+    Openings through September
+
+It lives in `index.html` (hero) and `contact.html` (above the quote form),
+both marked with an HTML comment. Keep the two identical or the pages
+contradict each other.
+
+Say what he can take on, not when he is busy until. "Openings through
+September" invites a call; "booking into Fall" reads as booked solid.
 
 ## Contact form
 
