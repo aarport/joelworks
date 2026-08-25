@@ -63,10 +63,13 @@ than hand-edit if you reorder.
 
 ## JavaScript
 
-Two scripts, both small and both optional. `contact.html` reads `?job=` and
-preselects the dropdown. `gallery.html` runs the shadowbox. Without either,
-the pages still work: the form submits and the gallery shows the finished
-shots. Everything else, including the hero parallax and the trade-bar photo
+Three scripts, all small and all optional. `contact.html` reads `?job=` and
+preselects the dropdown. `gallery.html` runs the shadowbox. `index.html` reveals each section as it
+comes into view, on load for what is already on screen and on scroll for the
+rest; it only hides a section after adding a class that proves a script is
+running, so with JavaScript off nothing disappears. Without any of them the
+pages still work: the form submits, the gallery shows the finished shots and
+every section is visible. Everything else, including the hero parallax and the trade-bar photo
 swapping, is CSS. Keep it that way if you can.
 
 ## URLs

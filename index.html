@@ -5,6 +5,13 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://joelworks.ca/">
 <link rel="stylesheet" href="css/style.css">
+<script>
+  /* Only hide sections for the reveal when a script is running to unhide
+     them again, and only when motion is welcome. */
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    document.documentElement.classList.add('reveal-ready');
+  }
+</script>
 
 <a class="skip" href="#main">Skip to content</a>
 
@@ -367,3 +374,33 @@
     Text
   </a>
 </nav>
+
+<!--
+  Section reveals. Fires for whatever is already on screen at load and for
+  the rest as they scroll in. Falls back to showing everything if
+  IntersectionObserver is missing.
+-->
+<script>
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('reveal-ready')) return;
+
+    var secs = document.querySelectorAll('main > .hero ~ section');
+    var show = function (el) { el.classList.add('is-in'); };
+
+    if (!('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(secs, show);
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        show(e.target);
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.02 });
+
+    Array.prototype.forEach.call(secs, function (s) { io.observe(s); });
+  })();
+</script>

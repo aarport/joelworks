@@ -469,31 +469,30 @@ p { margin: 0 0 1em; }
   }
 }
 
-/* ---------- Sections revealing on scroll ---------- */
-/* Scoped to sections that follow a hero, which only the home page has, so it
-   never collides with the page-load rise on the other pages.
+/* ---------- Sections revealing into view ---------- */
+/* A scroll timeline cannot tell "already on screen at load" from "scrolled
+   to": a section sitting in the first viewport is simply past its range, so
+   it appears instantly with nothing to see. A one-shot class handles both,
+   animating on load for what is already visible and on scroll for the rest.
 
-   Double-guarded: without scroll-timeline support, or with reduced motion
-   asked for, neither the animation nor the hidden start state is ever
-   applied, so nothing can be left stuck invisible. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    @keyframes section-in {
-      from { opacity: 0; transform: translateY(26px); }
-      to   { opacity: 1; transform: none; }
-    }
-
-    main > .hero ~ section {
-      animation: section-in linear both;
-      animation-timeline: view();
-      /* Starts once a fifth of the viewport height of the section is on
-         screen, not at its first pixel: beginning at entry 0 meant the whole
-         reveal happened down at the bottom edge and was over before you
-         looked at it. Viewport units rather than percentages so a tall
-         section reveals at the same pace as a short one. */
-      animation-range: entry 20vh entry 55vh;
-    }
+   The hidden start state hangs off .reveal-ready, which only a script adds,
+   so with JavaScript off or reduced motion asked for nothing is ever
+   hidden. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes section-in {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: none; }
   }
+
+  .reveal-ready main > .hero ~ section { opacity: 0; }
+
+  .reveal-ready main > .hero ~ section.is-in {
+    animation: section-in .8s cubic-bezier(.2, .7, .2, 1) both;
+  }
+
+  /* what is on screen at load comes in one after another */
+  .reveal-ready main > .hero ~ section:nth-of-type(2).is-in { animation-delay: .45s; }
+  .reveal-ready main > .hero ~ section:nth-of-type(3).is-in { animation-delay: .60s; }
 }
 
 /* ---------- Trust strip ---------- */
