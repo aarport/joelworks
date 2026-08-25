@@ -486,9 +486,12 @@ p { margin: 0 0 1em; }
     main > .hero ~ section {
       animation: section-in linear both;
       animation-timeline: view();
-      /* a length rather than a percentage, so a tall section reveals at the
-         same pace as a short one */
-      animation-range: entry 0% entry 240px;
+      /* Starts once a fifth of the viewport height of the section is on
+         screen, not at its first pixel: beginning at entry 0 meant the whole
+         reveal happened down at the bottom edge and was over before you
+         looked at it. Viewport units rather than percentages so a tall
+         section reveals at the same pace as a short one. */
+      animation-range: entry 20vh entry 55vh;
     }
   }
 }
