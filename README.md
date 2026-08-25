@@ -38,6 +38,12 @@ into each page. If you change one, change all six.
 `reviews.html` is deliberately kept out of the main nav and marked `noindex`.
 It is meant to be reached from a link Joel texts customers, not browsed to.
 
+## JavaScript
+
+There is one script on the whole site, at the bottom of `contact.html`. It
+reads `?job=` and preselects the dropdown. Everything else, including the hero
+parallax and the trade-bar photo swapping, is CSS. Keep it that way if you can.
+
 ## URLs
 
 GitHub Pages resolves `/foo` to `foo.html`, so every page is linked without
@@ -108,6 +114,23 @@ matters because nobody confirms it before it publishes.
 One thing to watch: the pill has a green dot that reads as "available". If
 you set a message saying the opposite, the dot contradicts the words; either
 reword it or drop the pill for that period.
+
+## Services page
+
+Five sections, one per trade, each with a feature photo, detail thumbnails and
+a quote button. Every image slot is a fixed aspect with `object-fit: cover`, so
+a replacement photo crops itself whatever shape or rotation it arrives in. To
+swap one, change the `src`; nothing else needs touching.
+
+The quote buttons carry the trade through: `/contact?job=Tile%20work`
+preselects that option in the contact form's dropdown. If you add a section,
+its `job` value has to match an `<option>` in `contact.html` exactly, or the
+preselect silently does nothing.
+
+**Photos still wanted.** Bathrooms has no shower shot, which is the strongest
+thing Joel builds. Finish carpentry has none of its own and borrows a door
+from the basement job; built-ins, wainscoting, trim runs and closets would all
+help.
 
 ## Contact form
 

@@ -422,7 +422,7 @@ p { margin: 0 0 1em; }
 }
 
 /* anchors from the trade bar should not land under anything */
-.card[id] { scroll-margin-top: 90px; }
+.card[id], .service[id] { scroll-margin-top: 20px; }
 
 /* ---------- Trust strip ---------- */
 .trust {
@@ -484,6 +484,91 @@ p { margin: 0 0 1em; }
   font-size: .95rem;
 }
 .card ul li { margin-bottom: .3em; }
+
+/* ---------- Service sections ---------- */
+.service {
+  padding: 56px 0;
+  border-top: 1px solid var(--line);
+}
+
+.service--tint { background: var(--paper-2); }
+
+.service__top {
+  display: grid;
+  gap: 26px;
+  align-items: center;
+}
+
+.service__num {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  color: var(--accent);
+  margin-bottom: .6em;
+}
+
+.service__intro h2 { margin-bottom: .35em; }
+.service__intro .lede { margin-bottom: 22px; }
+
+/* Every slot is a fixed aspect with cover, so a photo dropped in later crops
+   itself whatever shape or rotation it arrives in. */
+.service__feature { margin: 0; }
+
+.service__feature img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+}
+
+.service__details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  list-style: none;
+  margin: 30px 0 0;
+  padding: 0;
+}
+
+.service__details figure { margin: 0; }
+
+.service__details img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+}
+
+.service__details figcaption {
+  margin-top: 9px;
+  font-size: .88rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.service__also {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: .95rem;
+  max-width: 62ch;
+}
+
+@media (min-width: 860px) {
+  .service { padding: 76px 0; }
+
+  .service__top {
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+  }
+
+  /* alternate which side the photograph sits on */
+  .service--flip .service__feature { order: -1; }
+
+  .service__details { grid-template-columns: repeat(4, 1fr); }
+  .service--basements .service__details { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* ---------- Split (image + text) ---------- */
 .split {

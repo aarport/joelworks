@@ -130,6 +130,7 @@
                 <option>Bathroom</option>
                 <option>Basement finishing</option>
                 <option>Tile work</option>
+                <option>Finish carpentry</option>
                 <option>Other interior work</option>
                 <option>Not sure yet</option>
               </select>
@@ -229,3 +230,21 @@
     Text
   </a>
 </nav>
+
+<!--
+  Preselects the dropdown when someone arrives from a services section, e.g.
+  /contact?job=Tile%20work. Progressive enhancement: with JS off the form still
+  works and the dropdown simply shows its first option. This is the only
+  JavaScript on the site.
+-->
+<script>
+  (function () {
+    var job = new URLSearchParams(window.location.search).get('job');
+    if (!job) return;
+    var sel = document.getElementById('job');
+    if (!sel) return;
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text === job) { sel.selectedIndex = i; return; }
+    }
+  })();
+</script>
