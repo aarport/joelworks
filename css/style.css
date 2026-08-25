@@ -516,14 +516,17 @@ p { margin: 0 0 1em; }
   content: "";
   position: absolute;
   left: 50%;
-  top: calc(50% + .03em);
+  /* A lowercase o centres on the x-height, not on the inline box. Measured
+     against the heading font: the box centre sits .378em above the baseline,
+     the o sits at .262em, so the disc drops the .117em difference. */
+  top: calc(50% + .117em);
 }
 
 /* the disc */
 .screw::before {
-  width: .60em;
-  height: .60em;
-  margin: -.30em 0 0 -.30em;
+  width: .58em;
+  height: .58em;
+  margin: -.29em 0 0 -.29em;
   background: var(--ink);
   border-radius: 50%;
 }
