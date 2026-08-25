@@ -246,7 +246,7 @@ p { margin: 0 0 1em; }
   object-position: center;
   /* pushes past the cover crop so the room feels closer, and leaves
      headroom for the parallax drift below */
-  --zoom-base: 1.12;
+  --zoom-base: 1.20;
   --hero-zoom: calc(var(--zoom-base) + var(--zoom-add));
   transform: scale(var(--hero-zoom));
   /* stacked: default shows, the rest fade in on trade hover */
@@ -312,14 +312,15 @@ p { margin: 0 0 1em; }
 @supports (animation-timeline: scroll()) {
   @media (prefers-reduced-motion: no-preference) {
     @keyframes hero-drift {
-      from { transform: scale(var(--hero-zoom)) translateY(-4%); }
-      to   { transform: scale(var(--hero-zoom)) translateY(4%); }
+      from { transform: scale(var(--hero-zoom)) translateY(-6%); }
+      to   { transform: scale(var(--hero-zoom)) translateY(6%); }
     }
 
     .hero__img {
       animation: hero-drift linear both;
       animation-timeline: scroll(root block);
-      animation-range: 0 100vh;
+      /* travel completes over less scroll, so it reads as faster */
+      animation-range: 0 75vh;
       will-change: transform;
     }
   }
@@ -777,7 +778,7 @@ p { margin: 0 0 1em; }
   /* the wide letterbox crop pulls the room away, so zoom harder here.
      Framed above centre to keep the pendants in shot. */
   .hero__img {
-    --zoom-base: 1.16;
+    --zoom-base: 1.24;
     object-position: center 38%;
   }
   .split { grid-template-columns: 1fr 1fr; gap: 40px; }
