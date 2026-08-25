@@ -54,9 +54,12 @@ sticky call bar) plus the buttons in the page body. Search and replace:
 
 ## Still placeholder
 
-- All photos in `images/` except `logo.svg` / `logo-footer.svg`
+- The "Meet Joel" photo (`about.svg`) is still a placeholder. Everything in
+  the gallery and the hero is a real Joel job
 - The "Meet Joel" bio on the home page, assembled from the Facebook blurb and
   the reviews rather than written by Joel
+- Gallery captions describe the work but name no towns. We do not know which
+  town most of those jobs were in; ask Joel, a real town name is worth having
 - Deposit terms and payment methods on the services page
 
 - Both review buttons in `reviews/index.html`, and the Google/Facebook links in

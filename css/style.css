@@ -532,15 +532,26 @@ p { margin: 0 0 1em; }
 .steps p { margin-bottom: 0; color: var(--muted); }
 
 /* ---------- Gallery ---------- */
-.gallery {
-  display: grid;
-  gap: 16px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.project { margin-bottom: 52px; }
+.project:last-child { margin-bottom: 0; }
+
+.project__name {
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  margin-bottom: .3em;
 }
 
-.gallery figure {
+.project__note {
+  color: var(--muted);
+  max-width: 56ch;
+  margin-bottom: 20px;
+}
+
+.project__grid {
+  display: grid;
+  gap: 14px;
+}
+
+.project figure {
   margin: 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -548,19 +559,31 @@ p { margin: 0 0 1em; }
   background: #fff;
 }
 
-.gallery img {
+.project img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  display: block;
 }
 
-.gallery figcaption {
-  padding: 12px 14px;
-  font-size: .92rem;
+.project figcaption {
+  padding: 11px 14px;
+  font-size: .9rem;
+  color: var(--muted);
 }
 
-.gallery figcaption strong { display: block; }
-.gallery figcaption span { color: var(--muted); }
+@media (min-width: 620px) {
+  .project__grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* the wide shot leads, the detail shots sit under it */
+  .project__lead { grid-column: 1 / -1; }
+  .project__lead img { aspect-ratio: 16 / 9; }
+}
+
+@media (min-width: 900px) {
+  .project__grid--even { grid-template-columns: repeat(4, 1fr); }
+  .project__grid--even img { aspect-ratio: 1 / 1; }
+}
 
 /* ---------- Service area ---------- */
 .towns {
@@ -881,47 +904,6 @@ p { margin: 0 0 1em; }
   display: block;
   font-weight: 500;
   color: var(--muted);
-}
-
-/* ---------- Before / after pairs ---------- */
-.ba {
-  display: grid;
-  gap: 16px;
-  list-style: none;
-  margin: 0 0 28px;
-  padding: 0;
-}
-
-.ba figure {
-  margin: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: #fff;
-}
-
-.ba__pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.ba__pair img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.ba__pair img + img { border-left: 1px solid var(--line); }
-
-.ba figcaption {
-  padding: 12px 14px;
-  font-size: .92rem;
-}
-.ba figcaption strong { display: block; }
-.ba figcaption span { color: var(--muted); }
-
-@media (min-width: 900px) {
-  .ba { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ---------- Review request page ---------- */
