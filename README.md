@@ -100,10 +100,14 @@ sticky call bar) plus the buttons in the page body. Search and replace:
 
 ## Confirmed by Joel
 
-Insurance (no WSIB needed, no employees), free quotes, and
-the service area: Norfolk County plus Brantford and Tillsonburg. He does not
-want calls about roofing, exterior siding, windows and doors, plumbing or
-electrical.
+Insurance (no WSIB needed, no employees), free quotes, and the service area:
+Norfolk County plus Brantford and Tillsonburg. He does not want calls about
+roofing, exterior siding, windows and doors, plumbing or electrical.
+
+Background: Renovations Technician co-op, Niagara College, 2013. In the trade
+since 2018. Joel Works part time from 2020, full time from 2021. Do not claim
+he has been renovating since 2013, which was only occasional work, and do not
+name the business he worked at before Joel Works.
 
 ## House style
 
