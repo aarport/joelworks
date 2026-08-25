@@ -79,13 +79,34 @@
           <!-- UPDATE THIS as the schedule moves -->
           <p class="availability availability--light">Currently booking into fall 2026</p>
 
+          <p>Send the details and we&rsquo;ll get back to you the same day.
+            Photos of the space help more than anything.</p>
+
+          <div class="btn-row" style="margin-bottom:18px">
+            <a class="btn btn--primary" href="mailto:joel@joelworks.ca?subject=Quote%20request&body=Name%3A%0A%0APhone%3A%0A%0ATown%3A%0A%0AWhat%20kind%20of%20work%20%28kitchen%20/%20bathroom%20/%20basement%20/%20tile%20/%20other%29%3A%0A%0ARoughly%20when%3A%0A%0ADetails%3A%0A%0A%28Photos%20of%20the%20space%20help%20a%20lot%2C%20attach%20any%20you%20have.%29%0A">Email your details</a>
+            <a class="btn btn--outline" href="sms:+12269315768">Text instead</a>
+          </div>
+
+          <p class="form-note">The email opens with the useful questions already
+            filled in, so you can answer them and send.</p>
+
           <!--
-            HEADS UP: this form needs a form-handling service before it will send
-            anything. GitHub Pages is static and cannot process a POST on its own.
-            Sign up at formspree.io (or a similar service), then replace
-            YOUR_FORM_ID below with the endpoint they give you.
-            Until then, the phone/text/email links above are the working paths.
-          -->
+            ============================================================
+            THE QUOTE FORM IS PARKED HERE, NOT DELETED.
+
+            It was posting to a placeholder Formspree endpoint that
+            returns 404, so submissions were being lost. The button above
+            is a mailto with a prefilled template: it works everywhere,
+            needs no third-party service and cannot silently fail.
+
+            TO TURN THE REAL FORM BACK ON:
+              1. Sign up at formspree.io (free tier covers 50/month)
+              2. Create a form, copy the endpoint it gives you
+              3. Paste it into the action below, replacing YOUR_FORM_ID
+              4. Delete the buttons above and uncomment this block
+              5. Submit it once yourself to confirm it arrives
+            ============================================================
+
           <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
             <div class="field--half-group">
               <div class="field">
@@ -130,6 +151,7 @@
             <p class="form-note">We never share your details. Prefer to talk? Call
               <a href="tel:+12269315768">(226) 931-5768</a>.</p>
           </form>
+          -->
         </div>
       </div>
     </div>
