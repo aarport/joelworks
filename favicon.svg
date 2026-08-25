@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Joel Works">
+  <title>Joel Works</title>
+  <rect width="64" height="64" rx="12" fill="#231f20"/>
+  <g transform="rotate(15 32 32)" fill="#ffffff">
+    <path d="M12 12h40v40H12z" fill="none" stroke="#ffffff" stroke-width="5"/>
+    <rect x="20" y="27" width="9" height="9"/>
+    <rect x="20" y="38" width="9" height="9"/>
+    <rect x="31" y="38" width="9" height="9"/>
+  </g>
+</svg>

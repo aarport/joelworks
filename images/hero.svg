@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" width="1600" height="1100" role="img" aria-label="Job site photo">
+  <defs>
+    <pattern id="p" width="32" height="32" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="32" height="32" fill="#1f3f5f"/>
+      <rect width="16" height="32" fill="#24486b"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#p)"/>
+  <rect x="40" y="40" width="1520" height="1020" fill="none" stroke="#ffffff" stroke-opacity=".45" stroke-width="3"/>
+  <text x="800" y="540" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="52" font-weight="700" fill="#ffffff">Job site photo</text>
+  <text x="800" y="594" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="28" fill="#ffffff" fill-opacity=".78">Placeholder image</text>
+</svg>
