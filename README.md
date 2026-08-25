@@ -10,10 +10,10 @@ straight from the repo root so GitHub Pages can host it as-is.
 
 ```
 index.html      home
-services/       services
-gallery/        recent work
-contact/        contact details + quote form
-reviews/        review request page: the link Joel texts after a job
+services.html   services
+gallery.html    recent work
+contact.html    contact details + quote form
+reviews.html    review request page: the link Joel texts after a job
 css/style.css   the whole stylesheet
 images/         logo + placeholder job photos (SVG)
 favicon.svg     simplified logo mark
@@ -33,11 +33,18 @@ works too, but a server is closer to how GitHub Pages behaves.
 ## Editing
 
 There is no templating, so the header, footer and bottom call bar are copied
-into each page. If you change one, change all five. Note that `reviews/index.html`
-sits one level down, so its paths are prefixed with `../`.
+into each page. If you change one, change all six.
 
-`reviews/` is deliberately kept out of the main nav and marked `noindex`. It is
-meant to be reached from a link Joel texts customers, not browsed to.
+`reviews.html` is deliberately kept out of the main nav and marked `noindex`.
+It is meant to be reached from a link Joel texts customers, not browsed to.
+
+## URLs
+
+GitHub Pages resolves `/foo` to `foo.html`, so every page is linked without
+an extension and without a trailing slash: `/services`, `/gallery`,
+`/contact`, `/reviews`, `/thanks`. Keep internal links in that form, and keep
+the canonical tags matching it, or the same page becomes reachable at several
+URLs.
 
 Contact details appear in three places per page (header, footer, and the
 sticky call bar) plus the buttons in the page body. Search and replace:
@@ -70,7 +77,7 @@ No em dashes or en dashes anywhere. Use commas, colons or full stops.
 
 ## Contact form
 
-`contact/index.html` posts to FormSubmit, which needs no account. Enquiries go to
+`contact.html` posts to FormSubmit, which needs no account. Enquiries go to
 `joel@joelworks.ca`, which forwards to Joel's inbox. The form redirects to
 `/thanks` on success.
 
