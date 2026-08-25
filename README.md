@@ -80,18 +80,31 @@ No em dashes or en dashes anywhere. Use commas, colons or full stops.
 
 ## Availability line
 
-The single thing Joel most wants changed, and the fastest to go stale. The
-exact same string appears twice, so a find-and-replace across the repo does
-it in one pass:
+The line naming a month on the home and contact pages. It goes stale faster
+than anything else on the site, and a stale one is worse than none: it tells
+visitors nobody maintains the place.
 
-    Openings through September
+It updates itself. `.github/workflows/availability.yml` runs on the 1st of
+each month and rolls it to "Openings through <next month>", commits, and the
+site redeploys.
 
-It lives in `index.html` (hero) and `contact.html` (above the quote form),
-both marked with an HTML comment. Keep the two identical or the pages
-contradict each other.
+**To say something specific, put one line in `availability.txt`:**
 
-Say what he can take on, not when he is busy until. "Openings through
-September" invites a call; "booking into Fall" reads as booked solid.
+    Booked solid until November
+
+That text is then used verbatim and never rolled. Empty the file to hand
+control back to the rolling default. Run `python3
+scripts/update-availability.py` to apply it locally, or trigger the workflow
+by hand from the Actions tab.
+
+**Two things to watch.** The rolling default claims Joel has openings next
+month, every month, which nobody confirms. If he gets booked up, put it in
+`availability.txt` or the site will keep advertising capacity he does not
+have.
+
+And the pill has a green dot that reads as "available". If you set a message
+saying the opposite, the dot contradicts the words; either reword it or drop
+the pill for that period.
 
 ## Contact form
 
