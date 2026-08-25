@@ -696,6 +696,15 @@ p { margin: 0 0 1em; }
 .mosaic__btn:focus-visible img { transform: scale(1.05); }
 
 /* the project name only surfaces on hover, so the wall stays quiet */
+.mosaic__label em {
+  display: block;
+  margin-top: 3px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: rgba(255, 255, 255, .72);
+}
+
 .mosaic__label {
   position: absolute;
   left: 0;
@@ -775,14 +784,36 @@ p { margin: 0 0 1em; }
   border-radius: 3px;
 }
 
-.lightbox__cap {
-  margin-top: 12px;
+.lightbox__img { max-height: 72vh; }
+
+.lightbox__meta {
+  margin-top: 14px;
+  max-width: 66ch;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
-  font-size: .72rem;
+}
+
+.lightbox__title {
+  font-size: 1.1rem;
+  margin-bottom: .4em;
+  color: #fff;
+}
+
+.lightbox__note {
+  margin: 0 0 .6em;
+  font-size: .95rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .78);
+}
+
+.lightbox__count {
+  margin: 0;
+  font-size: .68rem;
   font-weight: 700;
-  letter-spacing: .13em;
+  letter-spacing: .16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, .75);
+  color: rgba(255, 255, 255, .5);
 }
 
 .lightbox__close,

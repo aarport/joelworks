@@ -38,11 +38,27 @@ into each page. If you change one, change all six.
 `reviews.html` is deliberately kept out of the main nav and marked `noindex`.
 It is meant to be reached from a link Joel texts customers, not browsed to.
 
+## Gallery
+
+One tile per project, showing the finished room. Clicking opens a shadowbox
+with every photo from that job plus a note on how it was built.
+
+Project data lives in a single JSON block at the bottom of `gallery.html`,
+under `id="project-data"`. To add a job, drop the photos in `images/`, add an
+entry there, and add a tile to the mosaic pointing at it with
+`data-project`.
+
+Tile shape is chosen from each hero photo's aspect ratio, so a portrait shot
+gets a tall cell. Put a portrait photo in a landscape cell and the crop eats
+the top and bottom, which in a shower is most of the subject.
+
 ## JavaScript
 
-There is one script on the whole site, at the bottom of `contact.html`. It
-reads `?job=` and preselects the dropdown. Everything else, including the hero
-parallax and the trade-bar photo swapping, is CSS. Keep it that way if you can.
+Two scripts, both small and both optional. `contact.html` reads `?job=` and
+preselects the dropdown. `gallery.html` runs the shadowbox. Without either,
+the pages still work: the form submits and the gallery shows the finished
+shots. Everything else, including the hero parallax and the trade-bar photo
+swapping, is CSS. Keep it that way if you can.
 
 ## URLs
 
