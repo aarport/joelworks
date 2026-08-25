@@ -614,6 +614,48 @@ p { margin: 0 0 1em; }
   .work-preview { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* Recent work: button plus the profiles where more of it lives */
+.work-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  margin-top: 22px;
+}
+
+.work-actions__social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* The footer .social rules are declared later in this file, so the light
+   variant has to out-specify them rather than rely on order. */
+.work-actions .social--light { margin-top: 0; }
+
+.work-actions .social--light a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  color: var(--brand);
+  background: #fff;
+}
+
+.work-actions .social--light a:hover,
+.work-actions .social--light a:focus-visible {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+.work-actions .social--light svg { width: 20px; height: 20px; }
+
 /* ---------- Steps ---------- */
 .steps {
   counter-reset: step;
@@ -1185,33 +1227,7 @@ p { margin: 0 0 1em; }
     justify-content: space-between;
   }
   .site-footer .wrap { grid-template-columns: 1.4fr 1fr 1fr; }
-  /* social icons */
-.social {
-  display: flex;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-.social a {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border: 1px solid rgba(255, 255, 255, .3);
-  border-radius: 50%;
-  color: #fff;
-  transition: background .2s ease, border-color .2s ease;
-}
-
-.social a:hover,
-.social a:focus-visible {
-  background: rgba(255, 255, 255, .14);
-  border-color: rgba(255, 255, 255, .55);
-}
-
-.social svg { width: 19px; height: 19px; }
-
-.site-footer .legal { grid-column: 1 / -1; }
+  .site-footer .legal { grid-column: 1 / -1; }
 }
 
 @media (min-width: 900px) {
