@@ -725,7 +725,6 @@ p { margin: 0 0 1em; }
   .service--flip .service__feature { order: -1; }
 
   .service__details { grid-template-columns: repeat(4, 1fr); }
-  .service--basements .service__details { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ---------- Split (image + text) ---------- */
