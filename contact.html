@@ -150,6 +150,25 @@
             </div>
 
             <!--
+              Optional adjacent work. Each box carries its own field name rather
+              than five sharing one: FormSubmit's handling of repeated names is
+              not documented, and the failure mode would be silent, one value
+              arriving where three were ticked. Unticked boxes post nothing, so
+              the email only ever lists what someone actually asked about.
+            -->
+            <fieldset class="extras">
+              <legend>Anything else while we&rsquo;re there?</legend>
+              <p class="hint">Optional. Ticking a box means Joel prices it at the
+                same time, not that you have committed to anything.</p>
+
+              <label><input type="checkbox" name="Also flooring" value="Yes"> Flooring through the rest of the floor</label>
+              <label><input type="checkbox" name="Also finish carpentry" value="Yes"> Trim, doors and finish carpentry</label>
+              <label><input type="checkbox" name="Also a second bathroom" value="Yes"> A second bathroom</label>
+              <label><input type="checkbox" name="Also built-in storage" value="Yes"> Built-in storage or shelving</label>
+              <label><input type="checkbox" name="Also a fireplace or feature wall" value="Yes"> A fireplace or feature wall</label>
+            </fieldset>
+
+            <!--
               FormSubmit stamps its own time in UTC and gives no way to change
               it. Its line reads "Submitted at ... (UTC)" directly beneath the
               table, so this field is named "Ontario time" rather than anything
