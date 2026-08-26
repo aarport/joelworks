@@ -126,6 +126,25 @@ p { margin: 0 0 1em; }
 .brand img { flex: none; }
 .brand img { width: 46px; height: 46px; }
 
+/* One clockwise turn on load, the way a driver seats a screw. It borrows the
+   motif the headings already use, and the easing decelerates rather than
+   bouncing, because a screw does not spring back once it is home.
+
+   Rotation and scale only, never opacity: a logo that flashes missing is
+   worse than a logo that does not move, and this way the mark is legible
+   from the first frame whatever happens. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes brand-turn {
+    from { transform: rotate(-360deg) scale(.86); }
+    to   { transform: none; }
+  }
+
+  .brand img {
+    animation: brand-turn .9s cubic-bezier(.17, .84, .3, 1) both;
+    transform-origin: 50% 50%;
+  }
+}
+
 
 /* Header phone: hidden on phones, where the sticky bar does the job */
 .header-phone {
