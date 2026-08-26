@@ -587,7 +587,13 @@ p { margin: 0 0 1em; }
   /* A lowercase o centres on the x-height, not on the inline box. Measured
      against the heading font: the box centre sits .378em above the baseline,
      the o sits at .262em, so the disc drops the .117em difference. */
-  top: calc(50% + .117em);
+  /* The disc should sit on the ink centre of a lowercase o. Measured against
+     canvas text metrics at the three heading sizes actually in use, that
+     centre wants .1049em at 21.6px, .1166em at 30.4px and .1109em at 41.6px.
+     That is not a trend, it is rasterising noise, so there is no formula to
+     fit: this is the single constant with the smallest worst case, 0.149px,
+     against 0.261px for the .117em it replaces. */
+  top: calc(50% + .1117em);
 }
 
 /* the disc */
