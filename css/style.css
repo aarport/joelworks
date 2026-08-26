@@ -1595,7 +1595,7 @@ p { margin: 0 0 1em; }
 .areamap {
   display: block;
   width: 100%;
-  max-width: 520px;
+  max-width: 660px;
   margin: 0 auto;
   /* above the lake band, which is absolutely positioned and would otherwise
      paint over the southern towns. Long Point sitting on the water is right:
@@ -1645,10 +1645,12 @@ p { margin: 0 0 1em; }
    still reads as where he is based rather than just another large pin. */
 .areamap__name--big { font-size: 14px; font-weight: 700; }
 
+/* The canvas grew to fit the whole ring, which shrank every label by the same
+   proportion. These put the phone back where it was. */
 @media (max-width: 560px) {
   .areamap { max-width: none; }
-  .areamap__name { font-size: 13.5px; }
-  .areamap__name--big { font-size: 15px; }
+  .areamap__name { font-size: 15px; }
+  .areamap__name--big { font-size: 17px; }
 }
 
 /* ---------- Long-form prose (privacy) ---------- */
