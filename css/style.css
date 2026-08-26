@@ -422,7 +422,7 @@ p { margin: 0 0 1em; }
 }
 
 /* anchors from the trade bar should not land under anything */
-.card[id], .service[id] { scroll-margin-top: 20px; }
+.card[id], .service[id], section[id] { scroll-margin-top: 20px; }
 
 /* ---------- Page entrance ---------- */
 /* Everything sits inside prefers-reduced-motion: no-preference, including the
@@ -522,6 +522,22 @@ p { margin: 0 0 1em; }
   width: 20px;
   height: 20px;
   color: var(--accent);
+}
+
+/* Only the rating is a link. It keeps the strip's own colour and weight so the
+   row still reads as one set of facts, with a light underline to show it goes
+   somewhere. */
+.trust a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(35, 31, 32, .32);
+  text-underline-offset: 3px;
+}
+.trust a:hover,
+.trust a:focus-visible {
+  color: var(--accent-dark);
+  text-decoration-color: currentColor;
 }
 
 /* ---------- Screw "o", borrowed from the logo ---------- */
