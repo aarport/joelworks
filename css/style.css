@@ -135,12 +135,12 @@ p { margin: 0 0 1em; }
    from the first frame whatever happens. */
 @media (prefers-reduced-motion: no-preference) {
   @keyframes brand-turn {
-    from { transform: rotate(-360deg) scale(.86); }
+    from { transform: rotate(-120deg) scale(.92); }
     to   { transform: none; }
   }
 
   .brand img {
-    animation: brand-turn .9s cubic-bezier(.17, .84, .3, 1) both;
+    animation: brand-turn .75s cubic-bezier(.17, .84, .3, 1) both;
     transform-origin: 50% 50%;
   }
 }
