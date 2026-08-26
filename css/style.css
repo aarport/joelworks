@@ -768,6 +768,11 @@ p { margin: 0 0 1em; }
   align-items: center;
 }
 
+/* Centring is right for an image beside a paragraph. It is wrong beside a long
+   form, where it pushes a short column into the middle and opens a hole above
+   it. */
+.split--top { align-items: start; }
+
 .split img {
   border-radius: var(--radius);
   width: 100%;
