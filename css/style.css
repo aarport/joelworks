@@ -1638,6 +1638,7 @@ p { margin: 0 0 1em; }
 
 .extras label:hover { color: var(--brand-dark); }
 
+
 /* ---------- Service area map ---------- */
 /* Positions are projected from real coordinates, so this is the actual shape of
    the area rather than a decorative arrangement. Town names are live text. */
@@ -1657,51 +1658,24 @@ p { margin: 0 0 1em; }
   margin: 4px 0 0;
 }
 
-/* Height in percent, not pixels: the map scales with the viewport, so a fixed
-   band would drift away from the shoreline and leave Long Point stranded on
-   dry land at some widths. Long Point sits at 89.5% down the canvas, so the
-   water starts above that and it stays out in the lake where it belongs. */
-.areamap-wrap::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
-  bottom: 0;
-  height: 17%;
-  background:
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 18 C 200 6, 380 34, 600 24 C 820 14, 1000 2, 1200 14 L 1200 40 L 0 40 Z" fill="%23dbe4ee"/></svg>') top center / 100% 48% no-repeat,
-    linear-gradient(#dbe4ee, #dbe4ee) bottom center / 100% 54% no-repeat;
-}
-
-.areamap-sea {
-  position: absolute;
-  right: 4px;
-  bottom: 12px;
-  z-index: 1;
-  font-size: .72rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: #6d8199;
-}
 
 .areamap {
   display: block;
   width: 100%;
   max-width: 660px;
   margin: 0 auto;
-  /* above the lake band, which is absolutely positioned and would otherwise
-     paint over the southern towns. Long Point sitting on the water is right:
-     it is a spit out into the lake. */
   position: relative;
   z-index: 1;
-  /* The ring is wider than the frame on purpose: the area really does carry on
-     past the towns named. Letting it clip at the edge says that; letting it
-     overflow just collided with the line underneath. */
-  overflow: hidden;
+  /* Visible so the lake can run out to the edges of the page. The ring is
+     wider than the frame on purpose, but it is clipped inside the SVG now
+     rather than here: the area really does carry on past the towns named, and
+     letting the ring overflow collided with the line underneath. */
+  overflow: visible;
 }
 
 .areamap__water { fill: #dbe4ee; }
+/* The spit is land, so it takes the colour of the section behind it. */
+.areamap__spit { fill: var(--paper-2); }
 
 .areamap__sea {
   font-size: 11px;
