@@ -149,6 +149,14 @@
               <textarea id="details" name="details" required></textarea>
             </div>
 
+            <!--
+              FormSubmit stamps its own time in UTC and gives no way to change
+              it, so we send a correctly zoned one of our own. Named without an
+              underscore so it is treated as a normal field and appears in the
+              email body.
+            -->
+            <input type="hidden" name="Submitted" id="submitted">
+
             <button class="btn btn--primary" type="submit">Send request</button>
             <p class="form-note">We never share your details. Prefer to talk? Call
               <a href="tel:+12269315768">(226) 931-5768</a> or
@@ -241,19 +249,53 @@
 </nav>
 
 <!--
+  Two small enhancements to the form, both of which degrade to nothing.
+
   Preselects the dropdown when someone arrives from a services section, e.g.
-  /contact?job=Tile%20work. Progressive enhancement: with JS off the form still
-  works and the dropdown simply shows its first option. This is the only
-  JavaScript on the site.
+  /contact?job=Tile%20work. With JS off the form still works and the dropdown
+  simply shows its first option.
+
+  Stamps the submission with Ontario time. America/Toronto rather than a fixed
+  offset, so it follows daylight saving on its own and reads EDT in summer and
+  EST in winter, and so it is Joel's clock whatever timezone the sender is in.
 -->
 <script>
   (function () {
     var job = new URLSearchParams(window.location.search).get('job');
-    if (!job) return;
-    var sel = document.getElementById('job');
-    if (!sel) return;
-    for (var i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].text === job) { sel.selectedIndex = i; return; }
+    if (job) {
+      var sel = document.getElementById('job');
+      if (sel) {
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].text === job) { sel.selectedIndex = i; break; }
+        }
+      }
     }
+
+    var stamp = document.getElementById('submitted');
+    if (!stamp) return;
+
+    function setStamp() {
+      try {
+        /* Explicit components, not dateStyle/timeStyle: those cannot be
+           combined with timeZoneName and throw if you try. */
+        stamp.value = new Intl.DateTimeFormat('en-CA', {
+          timeZone: 'America/Toronto',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          timeZoneName: 'short'
+        }).format(new Date());
+      } catch (e) {
+        /* Leave it empty rather than send a time that might be wrong.
+           FormSubmit's own UTC line is still there either way. */
+        stamp.value = '';
+      }
+    }
+
+    setStamp();
+    var form = stamp.form;
+    if (form) form.addEventListener('submit', setStamp);
   })();
 </script>
