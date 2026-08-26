@@ -151,11 +151,13 @@
 
             <!--
               FormSubmit stamps its own time in UTC and gives no way to change
-              it, so we send a correctly zoned one of our own. Named without an
-              underscore so it is treated as a normal field and appears in the
-              email body.
+              it. Its line reads "Submitted at ... (UTC)" directly beneath the
+              table, so this field is named "Ontario time" rather than anything
+              starting with "Submitted": the two sit next to each other in the
+              email and must not read as the same label twice. No leading
+              underscore, so it is treated as a normal field and shown.
             -->
-            <input type="hidden" name="Submitted" id="submitted">
+            <input type="hidden" name="Ontario time" id="submitted">
 
             <button class="btn btn--primary" type="submit">Send request</button>
             <p class="form-note">We never share your details. Prefer to talk? Call
