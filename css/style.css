@@ -1558,13 +1558,50 @@ p { margin: 0 0 1em; }
 /* ---------- Service area map ---------- */
 /* Positions are projected from real coordinates, so this is the actual shape of
    the area rather than a decorative arrangement. Town names are live text. */
-.areamap-wrap { margin: 4px 0 0; }
+/* The lake is a band behind the map rather than a shape inside it. Widening the
+   SVG to reach the section edges would either stretch the geography or shrink
+   the labels to nothing on a phone; this reaches the edges at every width and
+   does neither. The wave is decorative, so stretching it is fine. */
+.areamap-wrap {
+  position: relative;
+  margin: 4px 0 0;
+  padding-bottom: 18px;
+}
+
+.areamap-wrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  bottom: 0;
+  height: 92px;
+  background:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 18 C 200 6, 380 34, 600 24 C 820 14, 1000 2, 1200 14 L 1200 40 L 0 40 Z" fill="%23dbe4ee"/></svg>') top center / 100% 40px no-repeat,
+    linear-gradient(#dbe4ee, #dbe4ee) bottom center / 100% 54px no-repeat;
+}
+
+.areamap-sea {
+  position: absolute;
+  right: 4px;
+  bottom: 12px;
+  z-index: 1;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #6d8199;
+}
 
 .areamap {
   display: block;
   width: 100%;
   max-width: 520px;
   margin: 0 auto;
+  /* above the lake band, which is absolutely positioned and would otherwise
+     paint over the southern towns. Long Point sitting on the water is right:
+     it is a spit out into the lake. */
+  position: relative;
+  z-index: 1;
   /* The ring is wider than the frame on purpose: the area really does carry on
      past the towns named. Letting it clip at the edge says that; letting it
      overflow just collided with the line underneath. */
@@ -1587,6 +1624,13 @@ p { margin: 0 0 1em; }
   stroke-width: 1.4;
   stroke-dasharray: 5 6;
   opacity: .5;
+}
+
+/* transform-box so the translate is in user units, and a short ease so the
+   movement reads as weight rather than the pins snapping about. */
+.areamap__town {
+  transform-box: view-box;
+  transition: transform .28s cubic-bezier(.2, .7, .2, 1);
 }
 
 .areamap__pin { fill: var(--brand-dark); }
