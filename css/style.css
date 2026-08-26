@@ -1638,6 +1638,17 @@ p { margin: 0 0 1em; }
 
 .extras label:hover { color: var(--brand-dark); }
 
+/* Eight of these in a single column made the form read as longer than it is.
+   auto-fit rather than a media query, because what matters is how wide this
+   column is, not how wide the window is: the form sits beside the contact
+   details on a desktop and is much narrower than the page. The grid is on a
+   wrapper rather than the fieldset itself, since a legend inside a grid
+   container is not a grid item and engines have disagreed about that. */
+.extras__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  column-gap: 20px;
+}
 
 /* ---------- Service area map ---------- */
 /* Positions are projected from real coordinates, so this is the actual shape of
