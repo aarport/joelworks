@@ -17,14 +17,21 @@
     var left = els.length;
     if (!left) { root.classList.remove('reveal-ready'); return; }
 
+    /* The first pass takes everything actually on screen, so nothing visible
+       is left blank waiting for a scroll that may never come. Passes after
+       that trigger slightly early, at 0.88, so a section has begun moving by
+       the time it is properly in view. */
+    var first = true;
+
     function reveal() {
       var vh = window.innerHeight;
+      var line = first ? vh : vh * 0.88;
       var batch = 0;
       for (var i = 0; i < els.length; i++) {
         var el = els[i];
         if (el.classList.contains('is-in')) continue;
         var r = el.getBoundingClientRect();
-        if (r.top < vh * 0.88 && r.bottom > 0) {
+        if (r.top < line && r.bottom > 0) {
           /* Whatever arrives together cascades rather than landing as one
              block. Capped so a screenful of gallery tiles does not turn into
              a queue you have to sit and wait out. */
@@ -34,6 +41,7 @@
           left--;
         }
       }
+      first = false;
       if (left <= 0) {
         window.removeEventListener('scroll', reveal);
         window.removeEventListener('resize', reveal);
@@ -43,6 +51,10 @@
     reveal();
     window.addEventListener('scroll', reveal, { passive: true });
     window.addEventListener('resize', reveal);
+    /* Images finishing after DOMContentLoaded can reflow a masonry column and
+       push something onto the first screen that was not there when the first
+       pass ran. Neither scroll nor resize fires for that. */
+    window.addEventListener('load', reveal);
 
     /* Last resort, for the case where this script binds and then stops
        working. The failure to look for is something hidden while it is on
@@ -51,6 +63,8 @@
        would trip a plain timeout and lose the animation for the whole rest
        of the page. */
     var guard = setInterval(function () {
+      if (left <= 0) { clearInterval(guard); return; }
+      reveal();                       /* catch any later layout change too */
       if (left <= 0) { clearInterval(guard); return; }
       for (var i = 0; i < els.length; i++) {
         var el = els[i];
