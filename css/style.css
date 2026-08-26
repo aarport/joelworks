@@ -1597,12 +1597,14 @@ p { margin: 0 0 1em; }
   font-weight: 600;
   fill: var(--ink);
 }
-.areamap__name--base { font-size: 14px; font-weight: 700; }
+/* The corners of the area, plus Simcoe. Simcoe keeps the accent colour, so it
+   still reads as where he is based rather than just another large pin. */
+.areamap__name--big { font-size: 14px; font-weight: 700; }
 
 @media (max-width: 560px) {
   .areamap { max-width: none; }
   .areamap__name { font-size: 13.5px; }
-  .areamap__name--base { font-size: 15px; }
+  .areamap__name--big { font-size: 15px; }
 }
 
 /* ---------- Long-form prose (privacy) ---------- */
