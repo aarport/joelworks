@@ -26,6 +26,13 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* iOS paints the overscroll bounce with the canvas background, which is taken
+     from html. With none set it fell back to the body's paper colour, so
+     bouncing past the footer showed a slab of cream under the navy and read as
+     the page scrolling on too far. Paper at the top, where the header is light,
+     footer navy at the bottom. The body's own background covers everything in
+     between, so this is only ever visible past the ends of the page. */
+  background: linear-gradient(to bottom, var(--paper) 50%, var(--brand-dark) 50%);
 }
 
 body {
