@@ -380,19 +380,44 @@
         <h2>Where we w<span class="screw">o</span>rk</h2>
         <p class="lede">Simcoe and most places within about 40 minutes of it.</p>
       </div>
-      <ul class="towns">
-        <li>Simcoe</li>
-        <li>Port Dover</li>
-        <li>Waterford</li>
-        <li>Delhi</li>
-        <li>Brantford</li>
-        <li>Tillsonburg</li>
-        <li>Turkey Point</li>
-        <li>Long Point</li>
-        <li>Port Rowan</li>
-        <li>Jarvis</li>
-        <li>Hagersville</li>
-      </ul>
+      <!--
+        The towns are SVG <text>, not an image, so they stay real words for
+        search and for a screen reader. Positions come from actual latitude
+        and longitude, so the shape of the area is true rather than drawn by
+        eye. Deliberately not an embedded map: that would load third party
+        script and cookies, and the privacy page says there are none.
+      -->
+      <figure class="areamap-wrap">
+        <svg class="areamap" viewBox="0 0 420 372" role="img" aria-labelledby="areamap-t areamap-d">
+          <title id="areamap-t">Where Joel Works takes on jobs</title>
+          <desc id="areamap-d">Simcoe, Ontario at the centre, the towns served around it, and Lake Erie to the south.</desc>
+          <path class="areamap__water" d="M0 326 C 110 316, 190 340, 270 332 C 340 325, 380 316, 420 322 L 420 372 L 0 372 Z"/>
+          <text class="areamap__sea" x="404" y="358" text-anchor="end">Lake Erie</text>
+          <circle class="areamap__ring" cx="244.8" cy="189.8" r="223.4"/>
+          <circle class="areamap__pin" cx="260.1" cy="24.0" r="3.3"/>
+          <text class="areamap__name" x="260.1" y="13.0" text-anchor="middle">Brantford</text>
+          <circle class="areamap__pin" cx="345.9" cy="121.7" r="3.3"/>
+          <text class="areamap__name" x="337.9" y="125.7" text-anchor="end">Hagersville</text>
+          <circle class="areamap__pin" cx="252.5" cy="137.6" r="3.3"/>
+          <text class="areamap__name" x="244.5" y="137.6" text-anchor="end">Waterford</text>
+          <circle class="areamap__pin" cx="326.6" cy="166.7" r="3.3"/>
+          <text class="areamap__name" x="334.6" y="170.7" text-anchor="start">Jarvis</text>
+          <circle class="areamap__pin" cx="165.5" cy="182.1" r="3.3"/>
+          <text class="areamap__name" x="165.5" y="171.1" text-anchor="middle">Delhi</text>
+          <circle class="areamap__pin areamap__pin--base" cx="244.8" cy="189.8" r="5.2"/>
+          <text class="areamap__name areamap__name--base" x="235.8" y="194.8" text-anchor="end">Simcoe</text>
+          <circle class="areamap__pin" cx="74.1" cy="176.1" r="3.3"/>
+          <text class="areamap__name" x="68.1" y="165.1" text-anchor="start">Tillsonburg</text>
+          <circle class="areamap__pin" cx="287.1" cy="218.9" r="3.3"/>
+          <text class="areamap__name" x="295.1" y="224.9" text-anchor="start">Port Dover</text>
+          <circle class="areamap__pin" cx="232.3" cy="268.9" r="3.3"/>
+          <text class="areamap__name" x="224.3" y="271.9" text-anchor="end">Turkey Point</text>
+          <circle class="areamap__pin" cx="182.8" cy="310.6" r="3.3"/>
+          <text class="areamap__name" x="174.8" y="313.6" text-anchor="end">Port Rowan</text>
+          <circle class="areamap__pin" cx="205.8" cy="332.0" r="3.3"/>
+          <text class="areamap__name" x="213.8" y="347.0" text-anchor="middle">Long Point</text>
+        </svg>
+      </figure>
       <p style="margin-top:16px" class="form-note">Not on the list? Ask anyway. If it's close, we'll come look.</p>
     </div>
   </section>
