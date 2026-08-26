@@ -1522,6 +1522,14 @@ p { margin: 0 0 1em; }
   color: var(--muted);
 }
 
+.lightbox__place {
+  margin: 0 0 .5em;
+  font-size: .82rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 /* ---------- Long-form prose (privacy) ---------- */
 .prose h2 {
   font-size: 1.2rem;
