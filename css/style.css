@@ -1555,6 +1555,14 @@ p { margin: 0 0 1em; }
   color: var(--accent);
 }
 
+/* The sticky bar already carries Call Joel on phones, so the hero does not
+   repeat it there and the fold gets that space back. Hidden below the same
+   768px line the bar itself appears at, so exactly one of the two is on screen
+   at any width, never both and never neither. */
+@media (max-width: 767px) {
+  .hero .btn-row .btn--primary { display: none; }
+}
+
 /* ---------- Service area map ---------- */
 /* Positions are projected from real coordinates, so this is the actual shape of
    the area rather than a decorative arrangement. Town names are live text. */
