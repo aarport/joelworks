@@ -527,9 +527,11 @@
 </nav>
 
 <!--
-  Section reveals. Fires for whatever is already on screen at load and for
-  the rest as they scroll in. Falls back to showing everything if
-  IntersectionObserver is missing.
+  Section reveals. A plain geometry check on scroll rather than an
+  IntersectionObserver: an observer does not report in a tab that is never
+  painted, which left sections stuck at opacity 0. This runs once
+  immediately and then on scroll, so what is on screen at load animates in
+  and the rest follow as they arrive.
 -->
 <script>
   (function () {
@@ -537,30 +539,33 @@
     if (!root.classList.contains('reveal-ready')) return;
 
     var secs = document.querySelectorAll('main > .hero ~ section');
-    var show = function (el) { el.classList.add('is-in'); };
+    var left = secs.length;
 
-    if (!('IntersectionObserver' in window)) {
-      Array.prototype.forEach.call(secs, show);
-      return;
+    function reveal() {
+      var vh = window.innerHeight;
+      for (var i = 0; i < secs.length; i++) {
+        var s = secs[i];
+        if (s.classList.contains('is-in')) continue;
+        var r = s.getBoundingClientRect();
+        if (r.top < vh * 0.88 && r.bottom > 0) {
+          s.classList.add('is-in');
+          left--;
+        }
+      }
+      if (left <= 0) {
+        window.removeEventListener('scroll', reveal);
+        window.removeEventListener('resize', reveal);
+      }
     }
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        show(e.target);
-        io.unobserve(e.target);
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.02 });
+    reveal();
+    window.addEventListener('scroll', reveal, { passive: true });
+    window.addEventListener('resize', reveal);
 
-    Array.prototype.forEach.call(secs, function (s) { io.observe(s); });
-
-    /* Safety net. An observer does not fire in a tab that is never painted,
-       and anything else that stops it running would leave sections stuck at
-       opacity 0. After a few seconds, show whatever is still hidden. */
+    /* Last resort: if anything is still hidden after ten seconds, drop the
+       hiding rule altogether rather than risk unreadable content. */
     setTimeout(function () {
-      Array.prototype.forEach.call(secs, function (s) {
-        if (!s.classList.contains('is-in')) show(s);
-      });
-    }, 4000);
+      if (left > 0) root.classList.remove('reveal-ready');
+    }, 10000);
   })();
 </script>
