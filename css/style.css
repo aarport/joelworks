@@ -1325,6 +1325,10 @@ p { margin: 0 0 1em; }
 .social svg { width: 19px; height: 19px; }
 
 .site-footer .legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  justify-content: space-between;
   border-top: 1px solid rgba(255, 255, 255, .16);
   padding-top: 18px;
   font-size: .85rem;
@@ -1499,6 +1503,25 @@ p { margin: 0 0 1em; }
 .quote cite span {
   display: block;
   font-weight: 500;
+  color: var(--muted);
+}
+
+/* ---------- Long-form prose (privacy) ---------- */
+.prose h2 {
+  font-size: 1.2rem;
+  margin: 1.9em 0 .5em;
+}
+.prose h1 + .lede { margin-bottom: 0; }
+.prose ul {
+  margin: 0 0 1em;
+  padding-left: 1.15em;
+}
+.prose li { margin-bottom: .35em; }
+.prose__meta {
+  margin-top: 2.4em;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: .9rem;
   color: var(--muted);
 }
 
