@@ -334,6 +334,13 @@ p { margin: 0 0 1em; }
    wherever it fits, and splits in the right place where it does not. */
 .eyebrow__towns { white-space: nowrap; }
 
+/* Below this the line cannot fit however small the type gets without becoming
+   unreadable, so let it wrap instead. A wrapped pill is untidy; one running off
+   the screen is broken. */
+@media (max-width: 359px) {
+  .eyebrow__towns { white-space: normal; }
+}
+
 .eyebrow {
   display: inline-block;
   text-align: center;
@@ -341,7 +348,14 @@ p { margin: 0 0 1em; }
   padding: 5px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, .14);
-  font-size: .74rem;
+  /* Sized off the viewport rather than fixed, so the town line fits by
+     construction instead of by luck. It was set to .74rem everywhere and
+     measured as fitting a 375px screen with 26px to spare, but that was
+     measured in a desktop browser: system-ui resolves to a different face on
+     iOS, and across 32 uppercase letters with tracking the difference is
+     enough to push it off the edge. At 375px this lands near 10px, which
+     leaves roughly 40px of slack, so a wider face still fits. */
+  font-size: clamp(.58rem, 2.5vw, .74rem);
   font-weight: 700;
   letter-spacing: .09em;
   text-transform: uppercase;
