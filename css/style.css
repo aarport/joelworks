@@ -329,8 +329,14 @@ p { margin: 0 0 1em; }
 .hero__inner > * { margin-top: 0; margin-bottom: 0; }
 .hero__inner > * + * { margin-top: 20px; }
 
+/* Keeping the towns unbreakable means the line breaks after "Serving" instead
+   of stranding Tillsonburg on its own. No media query needed: it stays one line
+   wherever it fits, and splits in the right place where it does not. */
+.eyebrow__towns { white-space: nowrap; }
+
 .eyebrow {
   display: inline-block;
+  text-align: center;
   margin-bottom: 14px;
   padding: 5px 12px;
   border-radius: 999px;
@@ -340,6 +346,7 @@ p { margin: 0 0 1em; }
   letter-spacing: .09em;
   text-transform: uppercase;
 }
+
 
 /* ---------- Hero parallax ---------- */
 /* Scroll-driven CSS animation: no JavaScript, and browsers without support
