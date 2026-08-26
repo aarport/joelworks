@@ -156,13 +156,7 @@
   }
 }
 </script>
-<script>
-  /* Only hide sections for the reveal when a script is running to unhide
-     them again, and only when motion is welcome. */
-  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-    document.documentElement.classList.add('reveal-ready');
-  }
-</script>
+<script src="js/reveal.js"></script>
 
 <a class="skip" href="#main">Skip to content</a>
 
@@ -235,7 +229,7 @@
   </section>
 
 
-  <section class="trust">
+  <section class="trust" data-reveal>
     <div class="wrap">
       <ul>
         <li>
@@ -275,7 +269,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" data-reveal>
     <div class="wrap">
       <div class="section__head">
         <h2>Recent w<span class="screw">o</span>rk</h2>
@@ -317,7 +311,7 @@
     </div>
   </section>
 
-  <section class="section section--tint">
+  <section class="section section--tint" data-reveal>
     <div class="wrap">
       <div class="section__head">
         <h2>How it w<span class="screw">o</span>rks</h2>
@@ -344,7 +338,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" data-reveal>
     <div class="wrap split">
       <img src="images/joel-700.webp"
            srcset="images/joel-700.webp 700w, images/joel-1000.webp 1000w"
@@ -376,7 +370,7 @@
     </div>
   </section>
 
-  <section class="section section--tint">
+  <section class="section section--tint" data-reveal>
     <div class="wrap">
       <div class="section__head">
         <h2>Where we w<span class="screw">o</span>rk</h2>
@@ -399,7 +393,7 @@
     </div>
   </section>
 
-  <section class="section section--tint" id="reviews">
+  <section class="section section--tint" data-reveal id="reviews">
     <div class="wrap">
       <div class="section__head">
         <h2>What cust<span class="screw">o</span>mers say</h2>
@@ -475,7 +469,7 @@
     </div>
   </section>
 
-  <section class="cta">
+  <section class="cta" data-reveal>
     <div class="wrap">
       <h2>Got a project in mind?</h2>
       <p>Tell us about the space and what you have in mind.</p>
@@ -544,46 +538,3 @@
   </a>
 </nav>
 
-<!--
-  Section reveals. A plain geometry check on scroll rather than an
-  IntersectionObserver: an observer does not report in a tab that is never
-  painted, which left sections stuck at opacity 0. This runs once
-  immediately and then on scroll, so what is on screen at load animates in
-  and the rest follow as they arrive.
--->
-<script>
-  (function () {
-    var root = document.documentElement;
-    if (!root.classList.contains('reveal-ready')) return;
-
-    var secs = document.querySelectorAll('main > .hero ~ section');
-    var left = secs.length;
-
-    function reveal() {
-      var vh = window.innerHeight;
-      for (var i = 0; i < secs.length; i++) {
-        var s = secs[i];
-        if (s.classList.contains('is-in')) continue;
-        var r = s.getBoundingClientRect();
-        if (r.top < vh * 0.88 && r.bottom > 0) {
-          s.classList.add('is-in');
-          left--;
-        }
-      }
-      if (left <= 0) {
-        window.removeEventListener('scroll', reveal);
-        window.removeEventListener('resize', reveal);
-      }
-    }
-
-    reveal();
-    window.addEventListener('scroll', reveal, { passive: true });
-    window.addEventListener('resize', reveal);
-
-    /* Last resort: if anything is still hidden after ten seconds, drop the
-       hiding rule altogether rather than risk unreadable content. */
-    setTimeout(function () {
-      if (left > 0) root.classList.remove('reveal-ready');
-    }, 10000);
-  })();
-</script>
