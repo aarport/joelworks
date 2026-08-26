@@ -773,6 +773,22 @@ p { margin: 0 0 1em; }
    it. */
 .split--top { align-items: start; }
 
+.contact-band {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius);
+  margin: 0 0 28px;
+}
+
+/* On a phone the page had said "call or text" four times over before the form
+   came into view: the lede, the phone row, the text row, and the prose, with a
+   Call/Text bar stuck to the bottom of the screen the whole time. The form is
+   what the page is for, so on one column it goes first and the details follow.
+   Nothing is hidden, and on two columns the reading order is unchanged. */
+@media (max-width: 899px) {
+  .split--top > :first-child { order: 2; }
+}
+
 .split img {
   border-radius: var(--radius);
   width: 100%;
