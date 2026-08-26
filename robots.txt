@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# The review-request page and the form thank-you are for people we send
+# there, not for search results.
+Disallow: /reviews
+Disallow: /thanks
+
+Sitemap: https://joelworks.ca/sitemap.xml
