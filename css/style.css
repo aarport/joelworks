@@ -777,16 +777,34 @@ p { margin: 0 0 1em; }
   display: block;
   width: 100%;
   border-radius: var(--radius);
-  margin: 0 0 28px;
+  margin: 0;
 }
 
-/* On a phone the page had said "call or text" four times over before the form
-   came into view: the lede, the phone row, the text row, and the prose, with a
-   Call/Text bar stuck to the bottom of the screen the whole time. The form is
-   what the page is for, so on one column it goes first and the details follow.
-   Nothing is hidden, and on two columns the reading order is unchanged. */
-@media (max-width: 899px) {
-  .split--top > :first-child { order: 2; }
+/* One column, with a Call/Text bar stuck to the bottom of the screen the whole
+   way down. The form is what the page is for, so it follows the first image
+   and the contact details come after it. The phone and text rows go: the bar
+   carries both, and the page had been saying it four times over before the
+   form even came into view. Everything reappears the moment the bar does not.
+   767 rather than 899 because that is where the bar and the second column both
+   switch over. */
+@media (max-width: 767px) {
+  .split--top > div:first-of-type { order: 2; }
+  .contact-list li:nth-child(-n+2) { display: none; }
+  .contact-list li:nth-child(3) { padding-top: 0; }
+}
+
+/* Two columns: the image at the top of the left one, level with the Request a
+   quote heading, the details beneath it, and the form down the right beside
+   both. min-content on the first row keeps the image's row from growing when
+   the form, which spans both, is taller than the two of them together. */
+@media (min-width: 768px) {
+  .split--top {
+    grid-template-rows: min-content 1fr;
+    row-gap: 28px;
+  }
+  .split--top > .contact-band { grid-column: 1; grid-row: 1; }
+  .split--top > div:first-of-type { grid-column: 1; grid-row: 2; }
+  .split--top > div:last-of-type { grid-column: 2; grid-row: 1 / -1; }
 }
 
 .split img {
