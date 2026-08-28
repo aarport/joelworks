@@ -615,13 +615,16 @@ p { margin: 0 0 1em; }
   /* A lowercase o centres on the x-height, not on the inline box. Measured
      against the heading font: the box centre sits .378em above the baseline,
      the o sits at .262em, so the disc drops the .117em difference. */
-  /* The disc should sit on the ink centre of a lowercase o. Measured against
-     canvas text metrics at the three heading sizes actually in use, that
-     centre wants .1049em at 21.6px, .1166em at 30.4px and .1109em at 41.6px.
-     That is not a trend, it is rasterising noise, so there is no formula to
-     fit: this is the single constant with the smallest worst case, 0.149px,
-     against 0.261px for the .117em it replaces. */
-  top: calc(50% + .1117em);
+  /* The disc should sit on the ink centre of a lowercase o. Where that falls
+     inside the inline box depends on the font, and the headings here are
+     system-ui, so it is a different font on every platform: .105em to .117em
+     below the box centre for SF Pro, .095em for Segoe, .083em for Roboto,
+     .071em for Helvetica. js/screw.js finds the baseline and the ink centre
+     in whatever is actually rendering and sets --screw-top from the two. The
+     calc below is the constant that measurement gives on a Mac, kept as the
+     fallback for a browser without ink metrics: right there, and no worse
+     than it has always been anywhere else. */
+  top: var(--screw-top, calc(50% + .1117em));
 }
 
 /* the disc */
