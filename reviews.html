@@ -6,8 +6,34 @@
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/style.css">
+<!--
+  Google Tag Manager. Placed after the stylesheet rather than at the very top
+  of the head: it is asynchronous, so it costs nothing to sit here, and the
+  page's own identity stays in one block above it. "As high as possible" in
+  Google's instructions matters for containers that inject things before the
+  first paint. This one measures.
+
+  The container is the only third party script on the site. Anything added to
+  it is a change to what visitors are told on /privacy, so the two move
+  together.
+-->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N83HMH2R');</script>
 
 <a class="skip" href="#main">Skip to content</a>
+<!--
+  Google Tag Manager's noscript fallback. Google says to put this immediately
+  after the opening body tag; these pages have no body tag, and a noscript
+  holding an iframe while the parser is still in the head is handled
+  differently from one browser to the next. After the skip link it is
+  unambiguously in the body, and the skip link stays the first thing a
+  keyboard reaches, which matters more.
+-->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N83HMH2R"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="site-header">
   <div class="wrap">

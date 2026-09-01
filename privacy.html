@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy | Joel Works</title>
-<meta name="description" content="What Joel Works does with the name, phone number and job details you send through the contact form. No analytics, no cookies, no tracking.">
+<meta name="description" content="What Joel Works does with the name, phone number and job details you send through the contact form, what the site measures, and how to opt out.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Joel Works">
 <meta property="og:title" content="Privacy | Joel Works">
@@ -11,8 +11,34 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://joelworks.ca/privacy">
 <link rel="stylesheet" href="css/style.css">
+<!--
+  Google Tag Manager. Placed after the stylesheet rather than at the very top
+  of the head: it is asynchronous, so it costs nothing to sit here, and the
+  page's own identity stays in one block above it. "As high as possible" in
+  Google's instructions matters for containers that inject things before the
+  first paint. This one measures.
+
+  The container is the only third party script on the site. Anything added to
+  it is a change to what visitors are told on /privacy, so the two move
+  together.
+-->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N83HMH2R');</script>
 
 <a class="skip" href="#main">Skip to content</a>
+<!--
+  Google Tag Manager's noscript fallback. Google says to put this immediately
+  after the opening body tag; these pages have no body tag, and a noscript
+  holding an iframe while the parser is still in the head is handled
+  differently from one browser to the next. After the skip link it is
+  unambiguously in the body, and the skip link stays the first thing a
+  keyboard reaches, which matters more.
+-->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N83HMH2R"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="site-header">
   <div class="wrap">
@@ -40,15 +66,37 @@
     <div class="wrap wrap--narrow prose">
       <h1>Privacy</h1>
       <p class="lede">Joel Works is a one person renovation business in Simcoe,
-        Ontario. The short version: the only information collected is what you
-        choose to send when you get in touch, it goes straight to Joel, and it
-        is used to answer you and quote your job. Nothing is sold and nothing is
-        shared for marketing.</p>
+        Ontario. The short version: the site counts visits so Joel knows whether
+        it is doing its job, and the only information about you personally is
+        what you choose to send when you get in touch. That goes straight to
+        Joel and is used to answer you and quote your work. Nothing is sold and
+        nothing is shared for marketing.</p>
 
-      <h2>This site does not track you</h2>
-      <p>There is no analytics, no advertising pixel and no third party script
-        of any kind on this website. It sets no cookies. You can read every
-        page without telling us anything about yourself.</p>
+      <h2>What this site measures</h2>
+      <!--
+        KEEP THIS TRUE. The Tag Manager container is the only third party
+        script on the site, and right now it carries analytics and nothing
+        else. If an advertising tag is ever added to it, Google Ads, a Meta
+        pixel, anything that builds an audience or sends conversions back to an
+        ad platform, this section stops being accurate and has to be rewritten
+        before that tag goes live, not after.
+      -->
+      <p>This site loads Google Tag Manager, which runs Google Analytics. That
+        is the one third party script here, and it is there so Joel can see how
+        many people find the site and which pages they actually read. It counts
+        visits, it does not identify you, and nothing on this site is used to
+        follow you around other websites.</p>
+      <p>Google Analytics sets cookies in your browser so a returning visit can
+        be told from a new one, and records which pages you look at, roughly
+        where in the world you are, and what sort of device and browser you use.
+        Google works the location out from your IP address and does not pass the
+        address itself into the reports Joel sees. The data is held by Google on
+        its own servers, which are not all in Canada.</p>
+      <p>If you would rather not be counted, any browser or extension that
+        blocks trackers will stop it, and Google publishes an opt-out add-on at
+        <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">tools.google.com/dlpage/gaoptout</a>.
+        Nothing on this site is withheld from you either way, and there is no
+        banner asking you to agree to anything.</p>
       <p>The site is hosted on GitHub Pages, and like any web host GitHub
         records basic request information such as your IP address in its own
         server logs. That is GitHub&rsquo;s data, not ours, and Joel has no
@@ -139,7 +187,7 @@
         privacy law that applies to businesses like this one, at
         <a href="https://www.priv.gc.ca" rel="noopener">priv.gc.ca</a>.</p>
 
-      <p class="prose__meta">Last updated 26 August 2026.</p>
+      <p class="prose__meta">Last updated 1 September 2026.</p>
     </div>
   </section>
 </main>
