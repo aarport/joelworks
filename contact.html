@@ -154,10 +154,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_next" value="https://joelworks.ca/thanks">
             <input type="hidden" name="_captcha" value="false">
-            <!-- spam trap: real people never fill a hidden field -->
+            <!--
+              Spam trap: real people never fill a field they cannot see, and
+              FormSubmit drops the submission silently if this arrives with
+              anything in it.
+
+              The label used to read "Company" and the id used to be "company".
+              Chrome does not need a field to be visible to autofill it, and it
+              matches on the label, the id and the name: "company" is a direct
+              hit for the organization entry in a saved address, so anyone who
+              filled this form using autofill stood a good chance of tripping
+              their own spam trap and having the enquiry thrown away without
+              either end being told. The wording here is deliberately something
+              no autofill heuristic recognises. The name has to stay _honey,
+              which is FormSubmit's, and that one Chrome has no opinion about.
+            -->
             <div style="position:absolute;left:-9999px" aria-hidden="true">
-              <label for="company">Company</label>
-              <input id="company" type="text" name="_honey" tabindex="-1" autocomplete="off">
+              <label for="jw-leave-blank">Leave this field blank</label>
+              <input id="jw-leave-blank" type="text" name="_honey" tabindex="-1" autocomplete="off">
             </div>
 
             <div class="field--half-group">
