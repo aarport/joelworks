@@ -188,6 +188,22 @@ hidden `_subject`, `_template`, `_next` and `_captcha` fields are
 FormSubmit-specific; `_honey` is a spam trap and should stay whatever the
 service.
 
+**Do not label the honeypot after anything a browser recognises.** It was
+`<label for="company">Company</label>` until 1 Sep 2026, and Chrome autofilled
+it: a field does not have to be visible to be filled, and Chrome matches on
+the label, the id and the name. Anyone completing the form from a saved
+address tripped their own spam trap, and FormSubmit drops those silently, so
+the enquiry was thrown away and the visitor landed on FormSubmit's generic
+thank you page instead of `/thanks`, with nobody at either end told. That is
+how it was found. The label now reads "Leave this field blank" and the id is
+`jw-leave-blank`, which no autofill heuristic matches. Test any change to this
+field by submitting the form with autofill, not by typing.
+
+Two consequences of that bug are worth remembering. A dropped submission looks
+identical to a working one from the visitor's side apart from the thank you
+page, and it never reaches analytics either, because `/thanks` is the
+conversion event. Silence is not evidence the form is working.
+
 ## Logo
 
 `images/logo.svg` is converted from the original Illustrator file (dark
